@@ -1,0 +1,31 @@
+# Context Sections Memory
+
+## Purpose & Entry Points
+
+Renders discrete sections of the context output injected into Claude sessions. Each renderer handles a specific part of the context display (header, footer, timeline, summary).
+
+- Entry: `HeaderRenderer.ts`, `FooterRenderer.ts`, `TimelineRenderer.ts`, `SummaryRenderer.ts`
+
+## Patterns
+
+- Named exports; one function per logical section
+- Dual-mode rendering: each function takes `useColors: boolean` to delegate to Markdown or Color formatters
+- Returns `string[]` for composable output assembly
+- Imports formatters from `../formatters/` for actual string generation
+
+## Key APIs & Interactions
+
+- `renderHeader(project, economics, config, useColors)` - Main header with legend, column key, context index
+- `renderTimeline(timeline, fullObservationIds, config, cwd, useColors)` - Day-grouped observation/summary timeline
+- `renderSummaryFields(summary, useColors)` - Session summary fields (investigated, learned, completed, next_steps)
+- `renderPreviouslySection(priorMessages, useColors)` - Prior assistant message section
+- `renderFooter(economics, config, useColors)` - Token savings footer
+
+Called by: `ContextBuilder.ts` orchestrates section rendering in sequence.
+
+## Dos & Don'ts
+
+- DO use the `useColors` flag to delegate to correct formatter (never inline formatting logic)
+- DO return `string[]` for output composition (caller joins with newlines)
+- DON'T access database directly; receive pre-queried data from ContextBuilder
+- DON'T duplicate formatting logic; delegate to formatters/

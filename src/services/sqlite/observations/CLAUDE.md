@@ -1,0 +1,54 @@
+# Observations Memory
+
+## Purpose & Entry Points
+
+SQLite observation CRUD operations extracted from SessionStore for modular organization. Handles storing, retrieving, and querying observations with JSON field support.
+
+- `store.ts` - Insert new observations
+- `get.ts` - Retrieve by ID, batch IDs, or session
+- `recent.ts` - Recent observations for project/UI
+- `files.ts` - Aggregate file lists from session observations
+- `types.ts` - Shared type definitions
+
+## Patterns
+
+- All functions take `db: Database` as first parameter (Bun SQLite)
+- JSON fields (facts, concepts, files_read, files_modified) stored as strings, parsed on read
+- Timestamps dual-stored: ISO string (`created_at`) + epoch ms (`created_at_epoch`)
+- Functions return typed interfaces, not raw rows
+- Prepared statements with parameterized queries (SQL injection safe)
+
+## Key APIs & Interactions
+
+**Storage:**
+- `storeObservation(db, sessionId, project, observation, promptNumber?, tokens?, timestampOverride?)` - Insert observation, returns `{id, createdAtEpoch}`
+
+**Retrieval:**
+- `getObservationById(db, id)` - Single observation or null
+- `getObservationsByIds(db, ids, options?)` - Batch with filters (project, type, concepts, files)
+- `getObservationsForSession(db, sessionId)` - All observations for session
+
+**Recent/UI:**
+- `getRecentObservations(db, project, limit?)` - Project-scoped recent list
+- `getAllRecentObservations(db, limit?)` - Cross-project for viewer UI
+
+**Files:**
+- `getFilesForSession(db, sessionId)` - Aggregated `{filesRead, filesModified}` from all session observations
+
+**Called by:** SessionStore, HTTP routes (ObservationsRoutes)
+**Uses:** Bun SQLite Database, logger utility
+
+## Dos & Don'ts
+
+- DO use `created_at_epoch` for ordering (numeric, fast)
+- DO pass `overrideTimestampEpoch` when processing backlogged messages
+- DON'T query `text` column (deprecated, use title/subtitle/narrative)
+- DON'T manually stringify JSON fields - handled by store function
+
+## Dependencies
+
+None (leaf module, no cross-cutting concerns needed)
+
+## Documented Subdirectories
+
+None (leaf directory)

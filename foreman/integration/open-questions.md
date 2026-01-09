@@ -1,0 +1,4 @@
+1. You must consider how the instructions for specialized agents should work in tandem with memories so that we are not creating a similar DRY violation in the sense that a specialized (or any agent or orchestration agent) is, at the least possible amount, reading the same context twice.
+    - Think harder about what the original memory system in foreman does and how to best leverage it with agents.
+    - Given that we don't want to continuously have to update an agent, as the memories are able to be minimally updated and an agent updated would require a CLI restart, is this the best method?
+    - Is our memory management in our foreman project positioned to be incorporated into claude-mem as-is and how can claude-mem empower it?

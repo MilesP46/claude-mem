@@ -17,7 +17,10 @@ mock.module('../src/shared/SettingsDefaultsManager', () => ({
       CLAUDE_MEM_GEMINI_MODEL: 'gemini-2.5-flash-lite',
       CLAUDE_MEM_GEMINI_RATE_LIMITING_ENABLED: rateLimitingEnabled, // This is what GeminiAgent actually checks
       CLAUDE_MEM_LOG_LEVEL: 'INFO',
-      CLAUDE_MEM_DATA_DIR: '/tmp/claude-mem-test'
+      CLAUDE_MEM_DATA_DIR: '/tmp/claude-mem-test',
+      // Collection Controls
+      CLAUDE_MEM_COLLECTION_ENABLED: 'true',
+      CLAUDE_MEM_ALLOWED_PROJECTS: ''
     }),
     get: (key: string) => {
       if (key === 'CLAUDE_MEM_LOG_LEVEL') return 'INFO';
@@ -25,6 +28,8 @@ mock.module('../src/shared/SettingsDefaultsManager', () => ({
       if (key === 'CLAUDE_MEM_GEMINI_API_KEY') return 'test-api-key';
       if (key === 'CLAUDE_MEM_GEMINI_MODEL') return 'gemini-2.5-flash-lite';
       if (key === 'CLAUDE_MEM_GEMINI_RATE_LIMITING_ENABLED') return rateLimitingEnabled;
+      if (key === 'CLAUDE_MEM_COLLECTION_ENABLED') return 'true';
+      if (key === 'CLAUDE_MEM_ALLOWED_PROJECTS') return '';
       return '';
     }
   }

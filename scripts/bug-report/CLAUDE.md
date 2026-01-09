@@ -1,0 +1,41 @@
+# Bug Report Memory
+
+## Purpose & Entry Points
+
+CLI tool for generating formatted GitHub bug reports with automated system diagnostics. Uses Claude Agent SDK to format user-provided issue descriptions into well-structured markdown.
+
+- `cli.ts` - Interactive CLI entry point (shebang script)
+- `index.ts` - Core report generation logic with Agent SDK integration
+- `collector.ts` - System diagnostics collection
+
+## Patterns
+
+- **TypeScript + ESM** - Uses `.ts` extension with ESM imports
+- **Async/await throughout** - All I/O operations are async
+- **Graceful fallback** - Template fallback when Agent SDK fails
+- **Path sanitization** - Home directory replaced with `~` in all outputs
+- **Streaming response** - Agent SDK responses streamed with progress spinner
+
+## Key APIs & Interactions
+
+**Primary Exports:**
+- `generateBugReport(input: BugReportInput): Promise<BugReportResult>` - Main report generator
+- `collectDiagnostics(options): Promise<SystemDiagnostics>` - Gathers system info
+- `formatDiagnostics(diagnostics): string` - Formats diagnostics as markdown
+
+**Dependencies:**
+- Uses `@anthropic-ai/claude-agent-sdk` for AI-powered formatting
+- Queries worker API (`/health`, `/api/stats`) for worker status
+- Reads from `~/.claude-mem/` for logs, settings, database info
+
+## Dos & Don'ts
+
+- DO sanitize all paths before output (privacy)
+- DO include template fallback for Agent SDK failures
+- DO use streaming for real-time progress feedback
+- DON'T expose full home directory paths in reports
+- DON'T query database directly (use worker API endpoints)
+
+## Documented Subdirectories
+
+None (leaf directory)

@@ -36,4 +36,8 @@ export const DEFAULT_SETTINGS = {
   // Feature Toggles
   CLAUDE_MEM_CONTEXT_SHOW_LAST_SUMMARY: 'true',
   CLAUDE_MEM_CONTEXT_SHOW_LAST_MESSAGE: 'false',
+
+  // Collection Controls
+  CLAUDE_MEM_COLLECTION_ENABLED: 'true',
+  CLAUDE_MEM_ALLOWED_PROJECTS: '',
 } as const;

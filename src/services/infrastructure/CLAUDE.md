@@ -1,0 +1,41 @@
+# Infrastructure Memory
+
+## Purpose & Entry Points
+
+Process management, health monitoring, and graceful shutdown utilities for the worker service. Extracted from `worker-service.ts` monolith to provide centralized infrastructure concerns.
+
+- **Entry:** `index.ts` - Re-exports all infrastructure modules
+
+## Patterns
+
+- **Barrel Export:** `index.ts` re-exports all public APIs (use `.js` extensions for ESM)
+- **Platform-Aware:** Windows-specific handling for zombie ports, socket cleanup delays, and process tree management
+- **Graceful Degradation:** Health checks and version checks return safe defaults on failure
+- **PID Validation:** All functions accepting PIDs validate as positive integers before shell command execution (security)
+
+## Key APIs & Interactions
+
+**ProcessManager.ts:**
+- `writePidFile()` / `readPidFile()` / `removePidFile()` - PID file management at `~/.claude-mem/worker.pid`
+- `spawnDaemon(scriptPath, port)` - Spawn detached worker process
+- `getChildProcesses(pid)` - Windows-only child process enumeration (WMIC)
+- `forceKillProcess(pid)` - Cross-platform process termination
+- `cleanupOrphanedProcesses()` - Kill stale chroma-mcp processes
+
+**HealthMonitor.ts:**
+- `isPortInUse(port)` / `waitForHealth(port)` / `waitForPortFree(port)` - Port and health polling
+- `checkVersionMatch(port)` - Detect plugin/worker version mismatch (triggers restart)
+- `httpShutdown(port)` - Send shutdown request to running worker
+
+**GracefulShutdown.ts:**
+- `performGracefulShutdown(config)` - Orchestrated shutdown: HTTP server -> sessions -> MCP -> DB -> child processes
+
+**Called by:** `worker-service.ts`, hook scripts
+**Calls:** `../../utils/logger.js`
+
+## Dos & Don'ts
+
+- DO validate PIDs before using in shell commands (command injection prevention)
+- DO use platform-specific delays for Windows socket cleanup (prevents zombie ports)
+- DON'T log health check failures at INFO level (polls every 500ms, would flood logs)
+- DON'T use `AbortSignal.timeout` in fetch calls (causes libuv assertion failures on Windows Bun)

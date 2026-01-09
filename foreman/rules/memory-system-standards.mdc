@@ -1,0 +1,324 @@
+---
+description: Memory System Standards - Shared reference data for CLAUDE.md generation
+globs:
+alwaysApply: false
+---
+
+# Memory System Standards
+
+**Purpose:** Shared reference data for memory-manager agent. These standards apply to all CLAUDE.md file generation and maintenance.
+
+---
+
+## Size Limits
+
+| File Type | Target | Maximum | Action if Exceeded |
+|-----------|--------|---------|-------------------|
+| Root CLAUDE.md | 80-100 lines | 100 lines | Condense or restructure |
+| Subtree CLAUDE.md | 100-150 lines | 150 lines | Promote subdirectories |
+| Cross-cutting CLAUDE.md | 100-150 lines | 150 lines | Split or link to external docs |
+
+**Line counting:** Excludes blank lines and comments
+
+---
+
+## Adjacency Heuristics
+
+**PRIMARY RULE:** Create child CLAUDE.md when subdir has **≥3 source files**
+
+Also create when **any** of these hold:
+
+1. **Has recognizable entrypoint AND ≥2 additional files:**
+   - `index.*`, `main.*`, `router.*`, `__init__.*`, `app.*`, `server.*`
+   - (Entrypoint + only 1 other file is NOT sufficient)
+
+2. **Meets alternative size threshold:**
+   - Has **≥150 lines** total across source files (even if <3 files)
+   - See LOC Counting Methodology below for how to count
+
+3. **Has configuration or test harness:**
+   - Contains config files specific to this area
+   - Has dedicated test directory
+
+4. **Explicitly tagged:**
+   - Contains comment `CLAUDE: local` in source files
+
+5. **Logical architectural unit:**
+   - Represents a feature, module, service area, or domain
+   - Has clear boundaries and responsibilities
+   - **Override numeric thresholds when directory contains:**
+     - Related fixtures/seed data (e.g., `seed/data/lookups/` with fixture files)
+     - Domain models (e.g., `models/billing/` with related entities)
+     - Feature modules (e.g., `features/auth/` with cohesive components)
+     - Utility collections (e.g., `utils/validation/` with related helpers)
+     - Shared types/interfaces (e.g., `types/api/` with API contracts)
+
+### When NOT to Create
+
+Skip creation when:
+- Only 1-2 files (regardless of whether one is an entrypoint)
+- Tagged with `CLAUDE: ignore`
+- Content clearly belongs in parent memory
+- Would create excessive fragmentation (< 50 lines of content)
+
+### LOC Counting Methodology
+
+When evaluating "≥150 LOC total" or similar line-of-code thresholds:
+
+**Count these:**
+- All non-blank lines in source files
+- Source extensions: `.js`, `.ts`, `.jsx`, `.tsx`, `.py`, `.rb`, `.go`, `.rs`, `.java`, `.kt`, `.cs`, `.php`, `.c`, `.cpp`, `.h`, `.hpp`
+- Includes comments, imports, and code
+
+**Exclude these:**
+- Blank lines
+- Test files (`.test.*`, `.spec.*`)
+- Generated files (`package-lock.json`, `*.generated.*`, `dist/`, `build/`)
+- Configuration files (unless they contain significant logic)
+
+**Rationale:** LOC measures implementation complexity to justify memory overhead. This is a guideline - use "logical architectural unit" rule to override when context demands it.
+
+### Pre-Filtering (Orchestration Efficiency)
+
+When orchestrating multiple memory-manager invocations:
+- **Command-level pre-filter:** Observable facts (≥3 files OR (entrypoint AND ≥2 additional files) OR existing CLAUDE.md)
+- **Agent-level decision:** Full adjacency heuristics (including "logical unit" override)
+- **Purpose:** Prevent launching agents for obvious non-candidates (prevents context bloat)
+
+---
+
+## Command Detection Reference
+
+Scan for these manifest files and extract appropriate commands:
+
+| Manifest | Install | Dev | Test |
+|----------|---------|-----|------|
+| package.json | npm/yarn/pnpm install | npm run dev | npm test |
+| pyproject.toml | poetry install / pip install | python -m app | pytest |
+| Cargo.toml | cargo build | cargo run | cargo test |
+| go.mod | go mod download | go run . | go test ./... |
+| pom.xml | mvn install | mvn spring-boot:run | mvn test |
+| Gemfile | bundle install | bundle exec rails s | bundle exec rspec |
+| *.csproj | dotnet restore | dotnet run | dotnet test |
+| Makefile | make install | make dev | make test |
+| docker-compose.yml | docker-compose build | docker-compose up | - |
+
+**Priority:** Extract from actual scripts/targets in manifest when present. Use table values as fallback.
+
+---
+
+## Directory Role Detection
+
+Map directories to architectural roles using these patterns:
+
+| Directory Pattern | Role | Description |
+|-------------------|------|-------------|
+| services/, microservices/ | Backend Services | Microservices, APIs, jobs |
+| api/, server/, backend/ | Backend | Main backend app |
+| apps/, web/, client/, frontend/, ui/ | Frontend | User-facing apps |
+| packages/, libs/, shared/, common/ | Shared Code | Reusable libraries |
+| cmd/, bin/ | Entry Points | Executables |
+| pkg/, internal/ | Internal Packages | Internal libs |
+| infra/, terraform/, k8s/, deploy/ | Infrastructure | IaC and deployment |
+| .github/workflows/, .gitlab-ci/, ci/ | CI/CD | Build pipelines |
+| db/, prisma/, migrations/, alembic/ | Database | Schema and migrations |
+| docs/ | Documentation | Project docs |
+
+**Only include directories that:**
+- Actually exist in the project
+- Meet adjacency heuristics
+- Will have a CLAUDE.md file
+
+---
+
+## Cross-Cutting Concern Placement
+
+| Concern | Location | Imported By | Content |
+|---------|----------|-------------|---------|
+| CI/CD workflows | `.github/CLAUDE.md` | Deployment services, infra/ | Pipeline configs, deploy steps |
+| Security policies | `docs/security/CLAUDE.md` | All services/, auth packages | Auth patterns, validation |
+| Secret management | `docs/security/SECRETS.md` | Services needing config | Env var retrieval (provider-agnostic) |
+| API contracts | `docs/api/CLAUDE.md` | Services exposing/consuming APIs | OpenAPI specs, versioning |
+| Database schema | `db/CLAUDE.md` or `prisma/CLAUDE.md` | Services accessing DB | Schema, migrations, queries |
+| Observability | `docs/ops/CLAUDE.md` | Production services | Logging, metrics, tracing |
+| Performance | `docs/ops/performance.md` | Performance-critical services | Budgets, profiling |
+| Resilience | `docs/ops/resilience.md` | External-facing services | Retries, circuit breakers |
+| Code style | `docs/STYLE.md` | All code areas (optional) | Linting, formatting rules |
+| Domain glossary | `docs/domain/GLOSSARY.md` | Business logic areas | Terminology, invariants |
+
+**Key rule:** Root does NOT import these. Each subtree imports only what it functionally depends on.
+
+---
+
+## Functional Dependency Decision Matrix
+
+Determine which cross-cutting concerns to import:
+
+| This area... | Import |
+|-------------|--------|
+| Exposes REST/GraphQL API | `docs/api/CLAUDE.md` |
+| Consumes external APIs | `docs/api/CLAUDE.md` |
+| Handles authentication | `docs/security/CLAUDE.md` |
+| Performs authorization | `docs/security/CLAUDE.md` |
+| Accesses database | `db/CLAUDE.md` or `prisma/CLAUDE.md` |
+| Is production service | `docs/ops/CLAUDE.md` (observability) |
+| Calls external services | `docs/ops/resilience.md` |
+| Has performance requirements | `docs/ops/performance.md` |
+| Uses secrets/config | `docs/security/SECRETS.md` |
+
+---
+
+## Section Terminology
+
+**Dependencies:** Section in subtree CLAUDE.md listing cross-cutting CLAUDE.md files with `@path` syntax (e.g., @../../docs/security/CLAUDE.md).
+
+**Documented Subdirectories:** Section in parent CLAUDE.md with TWO parts:
+
+1. **With CLAUDE.md** - Subdirs meeting thresholds; list with path
+   ```markdown
+   - Auth: `./auth/` (see CLAUDE.md) - Authentication logic
+   ```
+
+2. **Notable subdirs** - Below threshold but worth mentioning; brief inline
+   ```markdown
+   **Other:** utils/ (helpers), types/ (type definitions)
+   ```
+
+Plain text only, NO `@` syntax. Serves as navigation aid and structural manifest.
+
+**Service Map:** Section in root CLAUDE.md providing plain text navigation to major architectural areas. NO `@` syntax.
+
+**Context Discovery Protocol:** Section in root CLAUDE.md teaching how to navigate based on task.
+
+---
+
+## Content Philosophy
+
+**Purpose:** Guide AI agents efficiently, don't replace code with documentation.
+
+**Core Principles:**
+1. **Summarize, don't enumerate** - Describe patterns, don't list every instance
+2. **Essential over exhaustive** - 3-5 key items per section, not complete catalogs
+3. **Navigation over documentation** - Point to code, don't duplicate it
+4. **Bottom-up generation** - Create deepest subdirs first, then parents, then root (prevents context overflow, enables delegation)
+
+**Examples:**
+- ✅ "Uses named exports; barrel pattern in index.ts" (pattern summary)
+- ❌ Listing every export from every file (enumeration)
+- ✅ "Primary exports: createUser(), validateEmail(), hashPassword()" (3-5 key items)
+- ❌ Documenting all 40 function signatures (exhaustive)
+
+---
+
+## Content Delegation Rule
+
+**When a subdirectory has its own CLAUDE.md:**
+
+- Parent delegates details to child (don't duplicate API Surface, Patterns, Invariants)
+- Parent delegates dependencies to child (don't duplicate `@path` references in parent Dependencies)
+- Parent only includes: orchestration logic, integration patterns, entry points at THIS level
+- Parent only includes `@path` dependencies that THIS level needs (not inherited from children)
+- Parent lists child in Documented Subdirectories with brief description (plain text, no `@`)
+- Child owns its own detailed documentation and dependencies
+
+**When generating parent content:**
+1. Check if subdir has CLAUDE.md
+2. If yes: Reference only (plain text), no detailed duplication, no dependency duplication
+3. If no: Include details in parent (until promotion threshold)
+
+**Dependency inheritance via bottom-up loading:**
+- If child has `@../../docs/security/CLAUDE.md`, parent does NOT duplicate it
+- Bottom-up loading automatically includes child's dependencies
+- Parent only lists `@path` dependencies it DIRECTLY needs that children don't have
+
+---
+
+## Import Rules
+
+**CRITICAL:** `@` syntax triggers AI context loading. Use sparingly for functional dependencies ONLY.
+
+**@ Syntax (AI loads file):**
+- ✅ Cross-cutting CLAUDE.md files ONLY in `## Dependencies` section (docs/security/CLAUDE.md, docs/api/CLAUDE.md, db/CLAUDE.md, docs/ops/CLAUDE.md)
+- ✅ Use relative paths from current file location (../../docs/security/CLAUDE.md)
+- ❌ NEVER import rule files (.mdc files - those are for agent reference only)
+- ❌ NEVER for parent/child/sibling structure (prevents cascade loading)
+- ❌ NEVER in Documented Subdirectories section
+- ❌ NEVER in root CLAUDE.md
+
+**Plain Text Paths (human navigation, AI doesn't load):**
+- ✅ Documented Subdirectories section (e.g., `./auth/` - see CLAUDE.md)
+- ✅ Service Map in root CLAUDE.md
+- ✅ Any structural/organizational references
+
+**Specific Rules:**
+1. **Root CLAUDE.md:** ZERO `@` syntax - plain text navigation only
+2. **Subtree CLAUDE.md:** `@path` entries ONLY in `## Dependencies` section for cross-cutting CLAUDE.md files
+3. **Parent-child:** Parents do NOT use `@` for children (plain text reference only)
+4. **Documented Subdirectories:** Plain text paths only, NO `@` syntax
+5. **Dependency paths:** Use relative paths from current file location: `@../../docs/security/CLAUDE.md`
+6. **File types:** Dependencies reference ONLY .md files (CLAUDE.md); NEVER .mdc files (rule files)
+
+---
+
+## Promotion/Demotion Thresholds
+
+**Promote to child CLAUDE.md when:**
+- Parent approaching 140-150 lines, AND
+- Subdirectory meets adjacency heuristics, AND
+- Subdirectory represents logical unit
+
+**Demote (fold back to parent) when:**
+- Child has < 3 source files, OR
+- Child CLAUDE.md has < 50 lines of content, OR
+- Parent has room (well under 150 lines)
+
+---
+
+## Coding Patterns to Capture
+
+When documenting patterns in subtree CLAUDE.md files, identify:
+
+1. **Import/Export Conventions:**
+   - Named vs default exports
+   - Barrel exports (index files)
+   - Module path aliases
+   - Import ordering/grouping
+
+2. **Module Organization:**
+   - File naming patterns
+   - Directory structure conventions
+   - Code collocation preferences
+
+3. **Implementation Patterns:**
+   - Error handling approaches
+   - Data flow patterns
+   - Testing conventions
+   - Common abstractions
+
+**Only include patterns actually present in the codebase** - no aspirational or assumed patterns.
+
+---
+
+## Information Accuracy Standards
+
+**100% Accuracy Rule:**
+- Only document information verified through direct code analysis
+- No speculation, assumptions, or "likely" behaviors
+- All patterns must be directly observable in code
+- All APIs must be verified in source
+
+---
+
+## Secret Safety
+
+**Never include in memories:**
+- API keys, tokens, passwords
+- Private keys, certificates
+- Long base64 strings
+- Connection strings with credentials
+
+**Instead:**
+- Reference project's secret manager
+- Link to `docs/security/SECRETS.md`
+- Describe retrieval process (provider-agnostic)
+- Document environment variable names only

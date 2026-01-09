@@ -1,0 +1,48 @@
+# Search Module Memory
+
+## Purpose & Entry Points
+
+Search orchestration for memory queries with strategy pattern, fallback logic, and result formatting.
+
+- **Entry:** `index.ts` (re-exports all public APIs)
+- **Main Class:** `SearchOrchestrator` - coordinates strategy selection and fallback
+
+## Patterns
+
+- **Strategy Pattern:** `SearchStrategy` interface with `search()` and `canHandle()` methods
+- **Graceful Fallback:** Chroma -> SQLite when semantic search fails
+- **URL-Friendly Params:** Comma-separated values normalized to arrays in orchestrator
+- **Re-exports:** All types and classes exported from `index.ts`
+
+## Key APIs
+
+| Export | Purpose |
+|--------|---------|
+| `SearchOrchestrator` | Main coordinator - `search()`, `findByConcept()`, `findByType()`, `findByFile()`, `getTimeline()` |
+| `ResultFormatter` | Formats results as markdown tables grouped by date/file |
+| `TimelineBuilder` | Builds chronological views with anchor-based depth filtering |
+| `StrategySearchResult` | Response type: `{ results, usedChroma, fellBack, strategy }` |
+
+**Dependencies:** SessionSearch, SessionStore (sqlite), ChromaSync (vector search)
+
+## Dos & Don'ts
+
+- DO check `isChromaAvailable()` before assuming semantic search
+- DO use `StrategySearchOptions` for type safety with extended filters
+- DON'T access strategies directly - use `SearchOrchestrator` methods
+- DON'T assume Chroma success - check `usedChroma` and `fellBack` in result
+
+## Documented Subdirectories
+
+- `filters/` - Date, project, and type filtering utilities (DateFilter, ProjectFilter, TypeFilter)
+- `strategies/` - Search implementations: ChromaSearchStrategy, SQLiteSearchStrategy, HybridSearchStrategy
+
+**Other:** None
+
+## Types Reference
+
+Key types in `types.ts`:
+- `ExtendedSearchOptions` - adds `searchType`, `obsType`, `concepts`, `files`, `format`
+- `SearchResults` - `{ observations, sessions, prompts }`
+- `CombinedResult` - unified type with `type`, `data`, `epoch`, `created_at`
+- `SEARCH_CONSTANTS` - `RECENCY_WINDOW_DAYS (90)`, `DEFAULT_LIMIT (20)`, `CHROMA_BATCH_SIZE (100)`

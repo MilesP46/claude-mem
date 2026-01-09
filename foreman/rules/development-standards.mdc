@@ -1,0 +1,50 @@
+---
+description: Engineering and Coding Standards
+globs:
+alwaysApply: true
+---
+
+## Engineering Principles
+
+1. **DRY (Don't Repeat Yourself):** Before writing code, search the codebase for similar logic or helpers.
+2. **Single-Responsibility:** One concern per module/class.
+3. **Modularity:** Prefer small sub-folders to avoid deep, monolithic files.
+4. **Language-agnostic:** Apply the same design discipline regardless of stack.
+
+## Code Structure & Length
+
+5. **Code Length:** Not including white space and comments, our goal is to ensure ≤150 LOC per file with a buffer of ≤200 before you need to investigate splitting logic. _Never_ sacrifice commentary for length. If you are required to investigate, you will need to split the logic into helpers or sub-folders. **ALWAYS** split into subfiles/subfolders to preserve commentary if the LOC cannot be met.
+
+## Documentation & Comments
+
+6. **File Headers:** Start every file with a brief header (purpose, author, last update).
+7. **Inline Comments:** Sprinkle inline comments anywhere the intent or logic wouldn't be instantly clear.
+8. **Function Documentation:** Functions >20 LOC (or multiple return paths) need an inline docstring / comment block with purpose, params, returns, exceptions.
+
+## Code Quality & Style
+
+9. **Style Guides:** Follow language-native community style guides (e.g. PEP 8, Prettier, gofmt) **unless project config overrides**.
+10. **Naming:** Prefer explicit names over abbreviations (`user_profile` not `up`).
+11. **Typed Integrity:** Do not bypass type or contract systems (e.g., casting to “any,” disabling checks, or reflection). Resolve the true type or validate input. Exceptions: Only at declared boundary layers (e.g., FFI, external API adapters) using approved validators or schema functions.
+
+## Performance Considerations
+
+12. **Algorithm Complexity:** Choose the least-complex algorithm that meets requirements; avoid O(n²)+ in hot paths.
+13. **Caching:** Cache results of expensive pure functions (memoisation, in-memory LRU, Redis, etc.).
+14. **Dynamic Imports:** Do not use runtime or dynamic imports (e.g., await import(...)) unless required for modular runtime behavior. Prefer static imports for predictability. Exceptions: Only in approved plugin or route loaders via defined APIs (e.g., loadPlugin(), lazyLoadRoute()).
+15. **Lazy Loading:** Lazy-load assets only when explicitly defined by architecture; otherwise, use static loading.
+
+## Standards Integration
+
+16. **Error Handling Discipline:** Do not add redundant guards or broad try/catch blocks that mask errors or duplicate global handlers. Exceptions: Only at trust boundaries (I/O or user input) using standardized boundary handlers.
+17. **Logging & Error Handling:** Adhere to global logging and error handling standards
+18. **Code Cleanliness:** No broad linting rule suppressions (e.g., file-wide eslint-disable). Remove unused code or prefix future implementations with underscore (`_InterfaceName`).
+
+## Future Implementation Identification
+
+19. **Planned Code:** Clearly distinguish between unused code (remove it) and planned future code (prefix with `_` and add TODO comments explaining intended use). Remove underscore prefix when implementation begins.
+
+## Runtime-Agnostic Code Requirements
+
+20. **Env-Driven Config (12-factor):** All configuration must come from environment variables. No hard-coded hostnames, ports, or secrets. Provide `.env.example` and validate required envs on boot.
+

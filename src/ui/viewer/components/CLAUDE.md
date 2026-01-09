@@ -1,0 +1,47 @@
+# Components Memory
+
+## Purpose & Entry Points
+
+React components for the claude-mem viewer UI. Card components render memory items; modals provide settings/logs; utility components handle UX patterns.
+
+- `Feed.tsx` - Main container orchestrating infinite scroll and item rendering
+- `Header.tsx` - App header with navigation, filtering, and controls
+
+## Patterns
+
+- **Named exports only** - All components use `export function ComponentName`
+- **Props interfaces inline** - Define `interface ComponentProps` directly above component
+- **Functional components** - No class components except ErrorBoundary
+- **Hook composition** - Components consume hooks from `../hooks/` for state/effects
+
+## Key APIs & Interactions
+
+**Card Components:**
+- `ObservationCard` - Toggleable facts/narrative views, parses JSON fields
+- `SummaryCard` - Structured sections (investigated, learned, completed, next_steps)
+- `PromptCard` - Simple text display for user prompts
+
+**Modal/Overlay Components:**
+- `ContextSettingsModal` - Collapsible settings with ChipGroup sub-components
+- `LogsDrawer` - Filterable log viewer with level/component parsing
+
+**Utility Components:**
+- `TerminalPreview` - ANSI-to-HTML conversion with word wrap toggle
+- `ScrollToTop` - Visibility-based scroll button
+- `ThemeToggle` - Cycles system/light/dark
+- `ErrorBoundary` - Class-based error catching with details display
+
+## Dos & Don'ts
+
+- DO use TypeScript interfaces for all props
+- DO import types from `../types`, formatters from `../utils/`
+- DON'T add class components (ErrorBoundary is the exception)
+- DON'T inline complex styles - use CSS variables from theme
+
+## Dependencies
+
+(None - leaf component directory, no cross-cutting concerns)
+
+## Documented Subdirectories
+
+(None - this is a leaf directory)

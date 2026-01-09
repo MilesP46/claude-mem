@@ -1,0 +1,36 @@
+# Tests Memory
+
+## Purpose & Entry Points
+- Unit and integration tests for claude-mem plugin using Bun test framework
+- Entry: `bun test` (all tests) or `bun test tests/<path>` (specific area)
+
+## Patterns
+- **Framework:** Bun test (`bun:test` - describe/it/expect/mock/beforeEach/afterEach)
+- **Mocking:** `mock.module()` for dependency isolation - MUST be called BEFORE importing modules that use the mocked dependency
+- **Database:** In-memory SQLite (`ClaudeMemDatabase(':memory:')`) for isolation
+- **Cleanup:** Always restore original state in `afterEach` (fetch, platform, PID files, temp dirs)
+- **Helpers:** Each test file defines factory functions for test data (`createMockSession()`, `createObservationInput()`)
+
+## Key Test Areas (Root Level)
+- **Session management** - `session_id_refactor.test.ts`, `session_id_usage_validation.test.ts`, `session_store.test.ts`
+- **Cursor integration** - `cursor-*.test.ts` (registry, hooks, MCP config, context updates)
+- **Worker service** - `worker-spawn.test.ts` (spawn/shutdown, health checks, PID management)
+- **AI agents** - `gemini_agent.test.ts` (rate limiting, error handling, model configuration)
+- **Utilities** - `hook-constants.test.ts`, `logger-coverage.test.ts`, `validate_sql_update.test.ts`
+
+## Dos & Don'ts
+- DO mock dependencies BEFORE importing modules that use them (order matters)
+- DO use factory helpers for consistent test data across test cases
+- DO close database connections in `afterEach` to prevent leaks
+- DON'T rely on real database or network - mock SessionStore, fetch, exec
+- DON'T import from worker-service.js directly (cascading import chain failures)
+- DON'T skip cleanup of temp directories and PID files
+
+## Documented Subdirectories
+
+- `context/` - Context generation tests (builders, compilers, formatters)
+- `infrastructure/` - Worker service utilities (health, process, shutdown)
+- `sqlite/` - Database layer tests (observations, sessions, summaries)
+- `worker/agents/` - Agent subsystem tests (error handling, response processing)
+
+**Other:** `hooks/` (save hook collection), `settings/` (validation), `shared/` (defaults manager), `scripts/`, `server/`, `worker/search/`

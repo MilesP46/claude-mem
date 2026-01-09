@@ -1,0 +1,23 @@
+---
+description: System and Packaging Standards
+globs:
+alwaysApply: true
+---
+
+## Packaging & Process Model
+- **One container = one service:** Each concern (web, ws, search, worker, etc.) runs as its own process/container. No multi-duty images.
+
+- **Stateless app containers:** Application containers are stateless. Persist data only in external stores or explicitly attached volumes.
+
+## Data Store Posture
+- **Managed primary database from day one:** Use a managed, externally available relational database (e.g., Postgres-class) independent of the app host. Applications connect via `DATABASE_URL`.
+
+## Operability Expectations
+- **Health checks & graceful shutdown:** Orchestrator-friendly: container health checks map to `/healthz` and `/readyz`; processes handle `SIGTERM` to drain and exit cleanly.
+
+- **Logs to process output:** Platforms/orchestrators collect stdout/stderr; no reliance on local file logging.
+
+## Network Assumptions
+- **No host-only assumptions:** Service discovery and endpoints come from environment. Never rely on local-hostonly bindings in code or packaging.
+
+- **Network Binding:** Respect `PORT` (and `HOST` if present). Do not bind to `127.0.0.1` by default; prefer binding dictated by env.

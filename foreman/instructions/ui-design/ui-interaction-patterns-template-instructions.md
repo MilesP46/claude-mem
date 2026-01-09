@@ -1,0 +1,247 @@
+# UI Interaction Patterns & User Feedback — Release {X} — **Instructions**
+
+- **Template file:** `templates/ui-design/ui-interaction-patterns-template.md`
+- **Who fills this:** UX Designer or UI/UX lead with interaction design expertise
+- **Editing rules:** Keep headings intact; focus on UI-level interactions and feedback; write concise, actionable content; prefer bullets over prose where possible.
+
+## How to use
+1. Duplicate this template into the target release folder (see final save location if specified).
+2. Fill in all placeholders and required sections.
+3. Keep **structure** and headings unchanged unless explicitly allowed.
+4. Commit the completed file to the release docs.
+
+## Placeholders
+Replace every placeholder of the form `{{…}}` with a concrete value:
+  - `Accessibility Pattern Name` — provide an explicit value; do **not** leave braces.
+  - `Animation Pattern Name` — provide an explicit value; do **not** leave braces.
+  - `Error Pattern Name` — provide an explicit value; do **not** leave braces.
+  - `F-001, F-002` — provide an explicit value; do **not** leave braces.
+  - `F-003` — provide an explicit value; do **not** leave braces.
+  - `Feedback System Name` — provide an explicit value; do **not** leave braces.
+  - `Loading Pattern Name` — provide an explicit value; do **not** leave braces.
+  - `Mobile Pattern Name` — provide an explicit value; do **not** leave braces.
+  - `Principle Name` — provide an explicit value; do **not** leave braces.
+  - `Realtime Pattern Name` — provide an explicit value; do **not** leave braces.
+  - `Success Pattern Name` — provide an explicit value; do **not** leave braces.
+  - `X` — provide an explicit value; do **not** leave braces.
+  - `accessibility_compliance_level` — provide an explicit value; do **not** leave braces.
+  - `accessibility_concern_addressed` — provide an explicit value; do **not** leave braces.
+  - `accessibility_level` — provide an explicit value; do **not** leave braces.
+  - `accessibility_level_2` — provide an explicit value; do **not** leave braces.
+  - `accessibility_library_requirements` — provide an explicit value; do **not** leave braces.
+  - `accessibility_testing_strategy` — provide an explicit value; do **not** leave braces.
+  - `achievement_success_animation` — provide an explicit value; do **not** leave braces.
+  - `achievement_success_next_steps` — provide an explicit value; do **not** leave braces.
+  - `achievement_success_visual` — provide an explicit value; do **not** leave braces.
+  - `action_progress_behavior` — provide an explicit value; do **not** leave braces.
+  - `action_progress_cancellation` — provide an explicit value; do **not** leave braces.
+  - `action_progress_visual_pattern` — provide an explicit value; do **not** leave braces.
+  - `animation_battery_impact` — provide an explicit value; do **not** leave braces.
+  - `animation_category` — provide an explicit value; do **not** leave braces.
+  - `animation_cpu_budget` — provide an explicit value; do **not** leave braces.
+  - `animation_degradation` — provide an explicit value; do **not** leave braces.
+  - `animation_frame_rate` — provide an explicit value; do **not** leave braces.
+  - `animation_hardware_acceleration` — provide an explicit value; do **not** leave braces.
+  - `animation_library_requirements` — provide an explicit value; do **not** leave braces.
+  - `animation_memory_budget` — provide an explicit value; do **not** leave braces.
+  - `animation_purpose` — provide an explicit value; do **not** leave braces.
+  - `animation_trigger` — provide an explicit value; do **not** leave braces.
+  - `audio_feedback_specification` — provide an explicit value; do **not** leave braces.
+  - `automatic_recovery_conditions` — provide an explicit value; do **not** leave braces.
+  - `automatic_recovery_notification` — provide an explicit value; do **not** leave braces.
+  - `automatic_recovery_process` — provide an explicit value; do **not** leave braces.
+  - `background_refresh_behavior` — provide an explicit value; do **not** leave braces.
+  - `background_refresh_user_control` — provide an explicit value; do **not** leave braces.
+  - `background_refresh_visual_pattern` — provide an explicit value; do **not** leave braces.
+  - `background_success_acknowledgment` — provide an explicit value; do **not** leave braces.
+  - `background_success_notification` — provide an explicit value; do **not** leave braces.
+  - `background_success_persistence` — provide an explicit value; do **not** leave braces.
+  - `bottom_sheet_dismissal` — provide an explicit value; do **not** leave braces.
+  - `bottom_sheet_interactions` — provide an explicit value; do **not** leave braces.
+  - `bottom_sheet_triggers` — provide an explicit value; do **not** leave braces.
+  - `celebration_intensity` — provide an explicit value; do **not** leave braces.
+  - `connected_background_behavior` — provide an explicit value; do **not** leave braces.
+  - `connected_user_information` — provide an explicit value; do **not** leave braces.
+  - `connected_visual_indicator` — provide an explicit value; do **not** leave braces.
+  - `critical_error_presentation` — provide an explicit value; do **not** leave braces.
+  - `critical_error_recovery` — provide an explicit value; do **not** leave braces.
+  - `critical_error_user_action` — provide an explicit value; do **not** leave braces.
+  - `desktop_interaction_behavior` — provide an explicit value; do **not** leave braces.
+  - `determinate_progress_animation` — provide an explicit value; do **not** leave braces.
+  - `determinate_progress_info` — provide an explicit value; do **not** leave braces.
+  - `determinate_progress_visual` — provide an explicit value; do **not** leave braces.
+  - `disconnected_recovery_actions` — provide an explicit value; do **not** leave braces.
+  - `disconnected_user_notification` — provide an explicit value; do **not** leave braces.
+  - `disconnected_visual_indicator` — provide an explicit value; do **not** leave braces.
+  - `entrance_animation_duration` — provide an explicit value; do **not** leave braces.
+  - `entrance_animation_easing` — provide an explicit value; do **not** leave braces.
+  - `entrance_animation_elements` — provide an explicit value; do **not** leave braces.
+  - `error_category` — provide an explicit value; do **not** leave braces.
+  - `error_dismissal_method` — provide an explicit value; do **not** leave braces.
+  - `error_display_duration` — provide an explicit value; do **not** leave braces.
+  - `error_screen_position` — provide an explicit value; do **not** leave braces.
+  - `error_severity_level` — provide an explicit value; do **not** leave braces.
+  - `error_visual_design` — provide an explicit value; do **not** leave braces.
+  - `exit_animation_duration` — provide an explicit value; do **not** leave braces.
+  - `exit_animation_easing` — provide an explicit value; do **not** leave braces.
+  - `exit_animation_elements` — provide an explicit value; do **not** leave braces.
+  - `expected_loading_duration` — provide an explicit value; do **not** leave braces.
+  - `feedback_strategy` — provide an explicit value; do **not** leave braces.
+  - `feedback_system_purpose` — provide an explicit value; do **not** leave braces.
+  - `foreman` — provide an explicit value; do **not** leave braces.
+  - `gesture_conflict_resolution` — provide an explicit value; do **not** leave braces.
+  - `gesture_feedback_pattern` — provide an explicit value; do **not** leave braces.
+  - `haptic_feedback_specification` — provide an explicit value; do **not** leave braces.
+  - `high_priority_notification_behavior` — provide an explicit value; do **not** leave braces.
+  - `how_error_affects_user_experience` — provide an explicit value; do **not** leave braces.
+  - `how_multiple_notifications_are_handled` — provide an explicit value; do **not** leave braces.
+  - `immediate_success_animation` — provide an explicit value; do **not** leave braces.
+  - `immediate_success_duration` — provide an explicit value; do **not** leave braces.
+  - `immediate_success_visual` — provide an explicit value; do **not** leave braces.
+  - `indeterminate_progress_animation` — provide an explicit value; do **not** leave braces.
+  - `indeterminate_progress_timeout` — provide an explicit value; do **not** leave braces.
+  - `indeterminate_progress_visual` — provide an explicit value; do **not** leave braces.
+  - `info_dismissal_method` — provide an explicit value; do **not** leave braces.
+  - `info_display_duration` — provide an explicit value; do **not** leave braces.
+  - `info_screen_position` — provide an explicit value; do **not** leave braces.
+  - `info_visual_design` — provide an explicit value; do **not** leave braces.
+  - `initial_load_behavior` — provide an explicit value; do **not** leave braces.
+  - `initial_load_fallback_strategy` — provide an explicit value; do **not** leave braces.
+  - `initial_load_visual_pattern` — provide an explicit value; do **not** leave braces.
+  - `interaction_framework` — provide an explicit value; do **not** leave braces.
+  - `interaction_principle_description` — provide an explicit value; do **not** leave braces.
+  - `interaction_testing_strategy` — provide an explicit value; do **not** leave braces.
+  - `interaction_timing_requirements` — provide an explicit value; do **not** leave braces.
+  - `keyboard_context_shortcuts` — provide an explicit value; do **not** leave braces.
+  - `keyboard_focus_order` — provide an explicit value; do **not** leave braces.
+  - `keyboard_focus_trapping` — provide an explicit value; do **not** leave braces.
+  - `keyboard_global_shortcuts` — provide an explicit value; do **not** leave braces.
+  - `keyboard_initial_focus` — provide an explicit value; do **not** leave braces.
+  - `keyboard_shortcut_discovery` — provide an explicit value; do **not** leave braces.
+  - `low_priority_notification_behavior` — provide an explicit value; do **not** leave braces.
+  - `measurable_interaction_outcomes` — provide an explicit value; do **not** leave braces.
+  - `medium_priority_notification_behavior` — provide an explicit value; do **not** leave braces.
+  - `mobile_gesture_support` — provide an explicit value; do **not** leave braces.
+  - `mobile_interaction_behavior` — provide an explicit value; do **not** leave braces.
+  - `mobile_interaction_type` — provide an explicit value; do **not** leave braces.
+  - `mobile_platform_ios_android_web` — provide an explicit value; do **not** leave braces.
+  - `offline_available_features` — provide an explicit value; do **not** leave braces.
+  - `offline_unavailable_features` — provide an explicit value; do **not** leave braces.
+  - `offline_user_communication` — provide an explicit value; do **not** leave braces.
+  - `optimistic_update_conflicts` — provide an explicit value; do **not** leave braces.
+  - `optimistic_update_implementation` — provide an explicit value; do **not** leave braces.
+  - `optimistic_update_rollback` — provide an explicit value; do **not** leave braces.
+  - `pattern_ab_testing` — provide an explicit value; do **not** leave braces.
+  - `pattern_analytics_tracking` — provide an explicit value; do **not** leave braces.
+  - `pattern_audit_process` — provide an explicit value; do **not** leave braces.
+  - `pattern_deviation_detection` — provide an explicit value; do **not** leave braces.
+  - `pattern_name` — provide an explicit value; do **not** leave braces.
+  - `pattern_name_2` — provide an explicit value; do **not** leave braces.
+  - `pattern_update_propagation` — provide an explicit value; do **not** leave braces.
+  - `pattern_user_testing` — provide an explicit value; do **not** leave braces.
+  - `performance_impact` — provide an explicit value; do **not** leave braces.
+  - `performance_impact_2` — provide an explicit value; do **not** leave braces.
+  - `performance_testing_strategy` — provide an explicit value; do **not** leave braces.
+  - `platform_list` — provide an explicit value; do **not** leave braces.
+  - `platform_list_2` — provide an explicit value; do **not** leave braces.
+  - `platforms` — provide an explicit value; do **not** leave braces.
+  - `progressive_success_celebration` — provide an explicit value; do **not** leave braces.
+  - `progressive_success_steps` — provide an explicit value; do **not** leave braces.
+  - `progressive_success_visual` — provide an explicit value; do **not** leave braces.
+  - `project_name` — provide an explicit value; do **not** leave braces.
+  - `pull_to_refresh_feedback` — provide an explicit value; do **not** leave braces.
+  - `pull_to_refresh_implementation` — provide an explicit value; do **not** leave braces.
+  - `pull_to_refresh_updates` — provide an explicit value; do **not** leave braces.
+  - `realtime_data_type` — provide an explicit value; do **not** leave braces.
+  - `realtime_update_frequency` — provide an explicit value; do **not** leave braces.
+  - `realtime_user_expectation` — provide an explicit value; do **not** leave braces.
+  - `reconnecting_progress_info` — provide an explicit value; do **not** leave braces.
+  - `reconnecting_timeout_handling` — provide an explicit value; do **not** leave braces.
+  - `reconnecting_visual_indicator` — provide an explicit value; do **not** leave braces.
+  - `reduced_functionality_features` — provide an explicit value; do **not** leave braces.
+  - `reduced_functionality_notification` — provide an explicit value; do **not** leave braces.
+  - `reduced_functionality_restoration` — provide an explicit value; do **not** leave braces.
+  - `screen_reader_dynamic_content` — provide an explicit value; do **not** leave braces.
+  - `screen_reader_error_announcements` — provide an explicit value; do **not** leave braces.
+  - `screen_reader_headings` — provide an explicit value; do **not** leave braces.
+  - `screen_reader_landmarks` — provide an explicit value; do **not** leave braces.
+  - `screen_reader_skip_links` — provide an explicit value; do **not** leave braces.
+  - `screen_reader_status_announcements` — provide an explicit value; do **not** leave braces.
+  - `server_sync_conflicts` — provide an explicit value; do **not** leave braces.
+  - `server_sync_offline` — provide an explicit value; do **not** leave braces.
+  - `server_sync_strategy` — provide an explicit value; do **not** leave braces.
+  - `standard_error_presentation` — provide an explicit value; do **not** leave braces.
+  - `standard_error_recovery` — provide an explicit value; do **not** leave braces.
+  - `standard_error_user_action` — provide an explicit value; do **not** leave braces.
+  - `success_category` — provide an explicit value; do **not** leave braces.
+  - `success_dismissal_method` — provide an explicit value; do **not** leave braces.
+  - `success_display_duration` — provide an explicit value; do **not** leave braces.
+  - `success_screen_position` — provide an explicit value; do **not** leave braces.
+  - `success_user_value` — provide an explicit value; do **not** leave braces.
+  - `success_visual_design` — provide an explicit value; do **not** leave braces.
+  - `supported_gesture_list` — provide an explicit value; do **not** leave braces.
+  - `swipe_actions_available` — provide an explicit value; do **not** leave braces.
+  - `swipe_actions_confirmation` — provide an explicit value; do **not** leave braces.
+  - `swipe_actions_indicators` — provide an explicit value; do **not** leave braces.
+  - `tablet_interaction_behavior` — provide an explicit value; do **not** leave braces.
+  - `target_user_group` — provide an explicit value; do **not** leave braces.
+  - `touch_target_minimum_size` — provide an explicit value; do **not** leave braces.
+  - `touch_target_recommended_size` — provide an explicit value; do **not** leave braces.
+  - `touch_target_spacing` — provide an explicit value; do **not** leave braces.
+  - `transition_animation_duration` — provide an explicit value; do **not** leave braces.
+  - `transition_animation_easing` — provide an explicit value; do **not** leave braces.
+  - `transition_animation_elements` — provide an explicit value; do **not** leave braces.
+  - `ui_framework_requirements` — provide an explicit value; do **not** leave braces.
+  - `user_recovery_actions` — provide an explicit value; do **not** leave braces.
+  - `user_recovery_guidance` — provide an explicit value; do **not** leave braces.
+  - `user_recovery_success_feedback` — provide an explicit value; do **not** leave braces.
+  - `visual_animation_controls` — provide an explicit value; do **not** leave braces.
+  - `visual_color_independence` — provide an explicit value; do **not** leave braces.
+  - `visual_contrast_requirements` — provide an explicit value; do **not** leave braces.
+  - `visual_dark_mode_support` — provide an explicit value; do **not** leave braces.
+  - `visual_essential_motion` — provide an explicit value; do **not** leave braces.
+  - `visual_feedback_specification` — provide an explicit value; do **not** leave braces.
+  - `visual_reduced_motion` — provide an explicit value; do **not** leave braces.
+  - `warning_dismissal_method` — provide an explicit value; do **not** leave braces.
+  - `warning_display_duration` — provide an explicit value; do **not** leave braces.
+  - `warning_screen_position` — provide an explicit value; do **not** leave braces.
+  - `warning_state_presentation` — provide an explicit value; do **not** leave braces.
+  - `warning_state_recovery` — provide an explicit value; do **not** leave braces.
+  - `warning_state_user_action` — provide an explicit value; do **not** leave braces.
+  - `warning_visual_design` — provide an explicit value; do **not** leave braces.
+  - `what_triggers_this_feedback` — provide an explicit value; do **not** leave braces.
+  - `when_and_where_to_apply` — provide an explicit value; do **not** leave braces.
+  - `when_this_loading_pattern_applies` — provide an explicit value; do **not** leave braces.
+  - `what_user_expects_during_loading` — provide an explicit value; do **not** leave braces.
+  - `why_user_needs_this_feedback` — provide an explicit value; do **not** leave braces.
+  - `Accessibility_requirement_question` — provide an explicit value; do **not** leave braces.
+  - `Feedback_system_assumption` — provide an explicit value; do **not** leave braces.
+  - `Interaction_assumption_or_question` — provide an explicit value; do **not** leave braces.
+  - `Performance_constraint_question` — provide an explicit value; do **not** leave braces.
+  - `Platform_specific_question` — provide an explicit value; do **not** leave braces.
+
+## Section‑by‑section guidance
+- **0) Overview** — Provide high-level project context focusing on interaction and feedback strategy.
+- **1) Core Interaction Principles** — Define fundamental interaction rules that apply across the entire application.
+- **2) User Feedback Systems** — Specify notification and feedback mechanisms for user actions and system states.
+- **3) Loading and Progress Patterns** — Define how loading states and progress are communicated to users.
+- **4) Error Handling Patterns** — Specify error presentation, recovery flows, and graceful degradation strategies.
+- **5) Success State Patterns** — Define success feedback and celebration patterns.
+- **6) Real-time Interaction Patterns** — Specify live data updates, optimistic updates, and connection status handling.
+- **7) Accessibility Patterns** — Define screen reader support, keyboard navigation, and visual accessibility requirements.
+- **8) Mobile Interaction Adaptations** — Specify touch-optimized interactions and mobile-specific patterns.
+- **9) Micro-interactions & Animations** — Define animation patterns, timings, and performance considerations.
+- **10) Pattern Cross-Reference Matrix** — Provide comprehensive mapping of patterns to flows and requirements.
+- **11) Implementation Guidelines** — Specify development and testing considerations for pattern implementation.
+- **12) Assumptions & Open Questions** — List assumptions and questions requiring resolution.
+
+## Quality checklist
+- [ ] All `{{…}}` placeholders resolved.
+- [ ] Interaction patterns are clearly defined and actionable.
+- [ ] Feedback systems are comprehensive and user-centered.
+- [ ] Loading and error patterns provide clear user guidance.
+- [ ] Accessibility patterns meet compliance requirements.
+- [ ] Mobile adaptations are touch-optimized and platform-appropriate.
+- [ ] Animation specifications include performance considerations.
+- [ ] Cross-reference matrix is complete and accurate.
+- [ ] Saved to the correct release folder.

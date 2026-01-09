@@ -1,0 +1,162 @@
+> **Template source**: `{{FOREMAN_ROOT}}/templates/diagram_templates/`  
+> Copy a template **first**, then edit. **Do not** alter the template directory directly.
+
+---
+
+## 1 How‑to‑Avoid‑Errors ✅
+
+1. **Fence it first, edit later**  
+   Always paste a fresh template inside a triple‑back‑tick block \`\`\`mermaid … \`\`\`  
+   _Never_ add markdown text above the opening fence—Mermaid stops reading at the first non‑code line.
+
+2. **Keep relationship labels unquoted**  
+   In `erDiagram`, relationship captions (**has**, **takes**, etc.) are plain words, **no quotes**:
+
+   ```mermaid
+   patients ||—o{ encounters : has   <!-- ✅ -->
+   ```
+
+3. **Only ASCII in IDs**  
+   Node IDs must match `[A‑Za‑z0‑9_]+`. Put human‑readable names _inside_ the label:
+
+   ```mermaid
+   GOOD_NODE["Pretty Label"]
+   ```
+
+4. **Match diagram type to orientation**  
+   Use the orientation fixed in §1 #3 (e.g., `erDiagram` is always TB). Changing it breaks CI.
+
+5. **Version comment first**  
+   Begin every file with `%% version:x.y – YYYY‑MM‑DD`.  
+   Bump minor for tiny tweaks, major for re‑layout.
+
+6. **Validate before commit**  
+   Run the CI linter (or local `make validate‑diagrams`)—it catches fences, IDs, orientation, missing `classDef`s, and colour contrast.
+
+7. **No `:::` Class on Subgraph Declaration**
+   Do not append a class suffix (e.g. `:::myclass`) directly to a `subgraph …` declaration line.
+
+8. **Apply Classes After Subgraph Ends**
+   When styling a subgraph, apply the class after the `end` keyword using the `class <subgraph_id> <class>` syntax. Ensure that the `<subgraph_id>` matches the identifier given at declaration time or via aliasing. Mermaid doesn't support directly assigning classes to a subgraph declaration line. Classes must be applied using the class keyword after the block ends.
+
+9. **No Trailing Spaces**
+   Ensure no trailing spaces at end of lines, especially in class definitions.  
+   Mermaid parser will fail with "got 'SPACE'" error when encountering trailing whitespace.
+
+Memorise these nine checks—95 % of rendering failures disappear.
+
+## 2 General Principles
+
+1. **ASCII identifiers only.** IDs may contain `A‑Z a‑z 0‑9 _`.  
+   _Forbidden_: spaces, dashes, emojis, « », accented letters.  
+   Put "pretty" labels _inside_ quotes/brackets:
+   ```mermaid
+   GOOD_NODE["Pretty Label 😊"]
+   ```
+2. **Fixed orientation by type** (do not change):
+   - `graph TD` → Component, Package
+   - `flowchart LR` → Deployment, Network
+   - `gantt` → Roadmap
+   - `sequenceDiagram` → Sequence
+   - `erDiagram` → ERD
+3. **Version comment** is the first line:
+   ```mermaid
+   %% version:x.y – YYYY-MM-DD
+   ```
+   Increment **minor** on any change, **major** on breaking visual change.
+
+## 3 Diagram Catalog
+
+| Diagram Type     | Notation                    | Orientation |
+| ---------------- | --------------------------- | ----------- |
+| Business Process | `flowchart TD`              | TD          |
+|                  | BPMN‑style (`flowchart TD`) | TD          |
+| Component        | `graph TD`                  | TD          |
+| Deployment       | `flowchart LR`              | LR          |
+| Sequence         | `sequenceDiagram`           | LR          |
+| ERD / Data Model | `erDiagram`                 | TB          |
+
+**Do not introduce new IDs or types without updating this table.**
+
+## 4 Visual Style
+
+### 4.1 Text Contrast
+
+Every `classDef` **must** include a `color:` value with WCAG ≥ 4.5 : 1 contrast vs. `fill:`.
+
+### 4.2 Inline Stereotype Labels
+
+Put the stereotype as the first line _inside_ the node label, italicised:
+
+```mermaid
+GATEWAY["*component*<br>API Gateway"]
+DB_PG[(🐘 *database*<brPostgreSQL)]
+```
+
+Never use «component» outside the node.
+
+### 4.3 Sub‑graph Titles
+
+Break long titles immediately **after** the stereotype using `<br>`:
+
+```mermaid
+subgraph AUTH_LAYER["*component*<br>Authentication Layer"]
+```
+
+Keep each line ≤ 24 chars to prevent browser re-wrap.
+
+### 4.5 Edge Routing & Padding
+
+1. **Exit ports:** In a TD diagram, edges that leave a sub‑graph **must exit the bottom edge** (or right edge in LR) to avoid crossing the frame header.
+2. **Inner padding:** Keep ≥ 16 px space between nodes and their sub‑graph border (`style SUBGRAPH padding:16px`).
+3. **Avoid edge crossings:** If Mermaid auto‑layout creates > 2 crossings, add intermediate invisible nodes or change `direction` to LR to straighten paths.
+4. **Curved edges:** Use `.->` or `-.->` only when necessary; prefer straight vertical or horizontal edges.
+
+## 5 Styling Tokens (global)
+
+| Token        | Hex       |
+| ------------ | --------- |
+| `PRIMARY`    | `#005DAD` |
+| `ACCENT1`    | `#F4A300` |
+| `SUCCESS`    | `#0F8F57` |
+| `GREY_DARK`  | `#333333` |
+| `GREY_MED`   | `#777777` |
+| `GREY_LIGHT` | `#BBBBBB` |
+
+Use tokens via `classDef`; **do not** hard‑code other colours.
+
+## 6 Mandatory Class Definitions
+
+```mermaid
+classDef component  fill:#e1f5fe,color:#00223d,stroke:#01579b,stroke-width:2px
+classDef external   fill:#f1f8e9,color:#1a3300,stroke:#33691e,stroke-dasharray:5 5,stroke-width:1.5px
+classDef database   fill:#fff3e0,color:#4e2500,stroke:#e65100,stroke-width:1.5px
+classDef process    fill:#f1f8e9,color:#1a3300,stroke:#33691e,stroke-width:1.5px
+classDef decision   fill:#fffde7,color:#4e342e,stroke:#a1887f,stroke-width:1.5px
+classDef action     fill:#f3e5f5,color:#4a148c,stroke:#7b1fa2,stroke-width:1px
+classDef critical   fill:#ffebee,color:#b71c1c,stroke:#d32f2f,stroke-width:3px
+classDef error      fill:#ffebee,color:#b71c1c,stroke:#d32f2f,stroke-width:2px
+classDef success    fill:#c8e6c9,color:#1b5e20,stroke:#4caf50,stroke-width:2px
+classDef note       fill:#fffde7,color:#4e342e,stroke:#a1887f,stroke-width:1px,stroke-dasharray:5 5
+```
+
+Extend with new classes **only** after adding them here.
+
+## 7 Element Semantics Quick‑Reference
+
+- **Component diagrams**: nodes labelled `*component*` inside; external systems use `external` class.
+- **Deployment diagrams**: clusters = environments; dashed links = optional/fail‑over.
+- **Sequence diagrams**: solid arrow = sync, dashed = async, dotted = return.
+- **ERD diagrams**: crow's‑foot = 1‑to‑many; underline PK; italic FK.
+
+## 8 Validation Checklist (CI must fail if any item false)
+
+1. Version comment present and incremented correctly.
+2. Identifiers are ASCII‑only.
+3. Only approved `classDef`s used.
+4. Diagram orientation matches table in §2.
+5. All colour pairs must meet **4.5 : 1** contrast.
+
+---
+
+_Last Updated: 2025-009-11_

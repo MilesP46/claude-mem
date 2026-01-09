@@ -1,0 +1,144 @@
+# Single Issue Template — Release {{X}} — Issue {{issue_key}}
+
+metadata:
+  release: "{{X}}"
+  sprint: "{{S}}"
+  created_date: "{{YYYY-MM-DD}}"
+  agent: "chain-issue-builder"
+  issue_key: "{{issue_key}}"
+
+# TIER 1: Issue Identification
+identification:
+  sequence_number: {{sequence_number}}
+  title: "{{Foo Issue Title}}"
+  short_description: "{{What to build/fix}}"
+  type: "{{feat}}" # feat | fix | chore | refactor
+  priority: "{{P1}}" # P0 (critical) | P1 (high) | P2 (normal)
+  status: "{{todo}}" # todo | in-progress | blocked | review | done
+  area: "{{api}}" # api | ui | db | infra | security | devex | docs
+  phase: "{{dev}}" # dev | build | deploy (CRITICAL: dev work must come before build work)
+
+# TIER 2: Planning & Requirements
+planning:
+  delivers_concepts:
+    - "{{CONCEPT-001}}"
+    - "{{CONCEPT-002}}"
+  scope:
+    problem: "{{What's broken, needed, or missing}}"
+    non_goals: -"{{Explicitly out of scope}}"
+  acceptance_criteria:
+    - "{{Testable outcomes using Given/When/Then or bullet list}}"
+  dependencies:
+    blocks: [] # Issues this blocks (by sequence number)
+    blocked_by: [] # Issues this depends on (by sequence number)
+
+# TIER 3: Execution & Orchestration
+execution:
+  workflow:
+    parallel_execution: false # Can this issue be worked on in parallel with others
+    capability_block: "{{authentication}}" # What capability this issue delivers
+    estimated_duration: "{{X days}}" # Rough time estimate
+  agents:
+    required_agents: # All agents needed for this capability block
+      - agent: "{{framework-manager}}"
+        role: "implementer" # implementer | reviewer | consultant | tester
+        execution_phase: "setup" # setup | implementation | validation | review
+        required: true # Is this agent required or optional
+        folders: # Added by chain-issue-updater for context restriction
+          primary: # Core folders where this agent will work
+            - "{{config/}}"
+            - "{{package.json}}"
+          secondary: # Supporting folders this agent may reference
+            - "{{docs/setup/}}"
+          excluded: # Folders this agent should avoid
+            - "{{src/}}"
+        globals: # Added by chain-issue-updater for agent-specific patterns
+          error_handling: "{{Setup/config error patterns}}" # e.g., "ConfigError.abort_with_message"
+          logging_system: "{{Setup logging patterns}}" # e.g., "setup_logger.info, progress indicators"
+      - agent: "{{backend-architect}}"
+        role: "implementer"
+        execution_phase: "implementation"
+        required: true
+        folders: # Added by chain-issue-updater for context restriction
+          primary: # Core folders where this agent will work
+            - "{{src/api/}}"
+            - "{{src/services/}}"
+          secondary: # Supporting folders this agent may reference
+            - "{{src/utils/}}"
+            - "{{tests/api/}}"
+          excluded: # Folders this agent should avoid
+            - "{{src/components/}}"
+        globals: # Added by chain-issue-updater for agent-specific patterns
+          error_handling: "{{API error response patterns}}" # e.g., "ApiError.respond_422, rescue_from ActiveRecord::RecordInvalid"
+          logging_system: "{{API logging patterns}}" # e.g., "Rails.logger.info, structured_log with request_id"
+      - agent: "{{frontend-developer}}"
+        role: "implementer"
+        execution_phase: "implementation"
+        required: false # Optional if no UI changes needed
+        folders: # Added by chain-issue-updater for context restriction
+          primary: # Core folders where this agent will work
+            - "{{src/components/}}"
+            - "{{src/pages/}}"
+          secondary: # Supporting folders this agent may reference
+            - "{{src/utils/}}"
+            - "{{tests/components/}}"
+          excluded: # Folders this agent should avoid
+            - "{{src/api/}}"
+        globals: # Added by chain-issue-updater for agent-specific patterns
+          error_handling: "{{UI error display patterns}}" # e.g., "ErrorBoundary, toast.error, form validation display"
+          logging_system: "{{Client logging patterns}}" # e.g., "console.error for dev, analytics.track for production"
+    task_breakdown:
+      - sequence: 1
+        agent: "{{framework-manager}}"
+        execution_phase: "setup"
+        task: "{{Set up project structure and dependencies}}"
+        deliverable: "{{Configured development environment}}"
+        estimated_effort: "{{2 hours}}"
+      - sequence: 2
+        agent: "{{backend-architect}}"
+        execution_phase: "implementation"
+        task: "{{Implement authentication API endpoints}}"
+        deliverable: "{{Working authentication service}}"
+        estimated_effort: "{{8 hours}}"
+      - sequence: 3
+        agent: "{{frontend-developer}}"
+        execution_phase: "implementation"
+        task: "{{Build authentication UI components}}"
+        deliverable: "{{Login/signup interface}}"
+        estimated_effort: "{{6 hours}}"
+
+# TIER 4: Quality & Integration
+integration:
+  github:
+    issue_number: null # filled after GitHub issue creation
+    issue_url: null # filled after GitHub issue creation
+    labels:
+      - "type:{{feat}}"
+      - "priority:{{P1}}"
+      - "status:{{todo}}"
+      - "area:{{api}}"
+      - "phase:{{dev}}"
+      - "release:{{X}}"
+      - "sprint:{{S}}"
+      - "concept:{{CONCEPT-001}}"
+      - "concept:{{CONCEPT-002}}"
+      - "{{depends-on:issue-number}}" # Add if this issue depends on others
+      - "{{parallel-ok}}" # Add if this can run in parallel
+      - "{{sequential}}" # Add if this must run sequentially
+  quality:
+    testing:
+      strategy: "{{TDD/BDD approach}}"
+      coverage_target: "{{X%}}"
+      test_types:
+        - "{{unit}}"
+        - "{{integration}}"
+        - "{{e2e}}"
+    deployment:
+      rollback_plan: "{{Rollback strategy if applicable}}"
+      feature_flags: "{{Feature flag requirements}}"
+      monitoring: "{{What to monitor post-deployment}}"
+    technical_debt:
+      incurred: "{{Any technical debt incurred}}"
+      mitigation_plan: "{{How to address debt later}}"
+  notes:
+    - "{{Additional notes or dependencies}}"

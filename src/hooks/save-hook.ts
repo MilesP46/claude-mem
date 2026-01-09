@@ -7,10 +7,23 @@
  */
 
 import { stdin } from 'process';
+import path from 'path';
 import { STANDARD_HOOK_RESPONSE } from './hook-response.js';
 import { logger } from '../utils/logger.js';
 import { ensureWorkerRunning, getWorkerPort } from '../shared/worker-utils.js';
 import { HOOK_TIMEOUTS } from '../shared/hook-constants.js';
+import { SettingsDefaultsManager } from '../shared/SettingsDefaultsManager.js';
+
+/**
+ * Check if the current working directory is in the allowed projects list
+ */
+function isProjectAllowed(cwd: string, allowedProjects: string): boolean {
+  if (!allowedProjects) return true; // Empty = all projects allowed
+  // Normalize and remove trailing slashes for consistent comparison
+  const normalized = path.normalize(cwd).replace(/\/+$/, '');
+  const allowed = allowedProjects.split(',').map(p => path.normalize(p.trim()).replace(/\/+$/, ''));
+  return allowed.some(p => normalized.startsWith(p));
+}
 
 export interface PostToolUseInput {
   session_id: string;
@@ -24,14 +37,39 @@ export interface PostToolUseInput {
  * Save Hook Main Logic - Fire-and-forget HTTP client
  */
 async function saveHook(input?: PostToolUseInput): Promise<void> {
-  // Ensure worker is running before any other logic
-  await ensureWorkerRunning();
-
+  // Validate input first (before any async operations)
   if (!input) {
     throw new Error('saveHook requires input');
   }
 
   const { session_id, cwd, tool_name, tool_input, tool_response } = input;
+
+  // Validate required fields early
+  if (!cwd) {
+    throw new Error(`Missing cwd in PostToolUse hook input for session ${session_id}, tool ${tool_name}`);
+  }
+
+  // Check collection settings BEFORE waiting for worker (avoids 15s worker startup wait)
+  const settingsPath = path.join(
+    SettingsDefaultsManager.get('CLAUDE_MEM_DATA_DIR'),
+    'settings.json'
+  );
+  const settings = SettingsDefaultsManager.loadFromFile(settingsPath);
+
+  // Step 1: Check global toggle
+  if (settings.CLAUDE_MEM_COLLECTION_ENABLED !== 'true') {
+    console.log(STANDARD_HOOK_RESPONSE);
+    return;
+  }
+
+  // Step 2: Check project allowlist
+  if (!isProjectAllowed(cwd, settings.CLAUDE_MEM_ALLOWED_PROJECTS)) {
+    console.log(STANDARD_HOOK_RESPONSE);
+    return;
+  }
+
+  // Now safe to wait for worker
+  await ensureWorkerRunning();
 
   const port = getWorkerPort();
 
@@ -40,11 +78,6 @@ async function saveHook(input?: PostToolUseInput): Promise<void> {
   logger.dataIn('HOOK', `PostToolUse: ${toolStr}`, {
     workerPort: port
   });
-
-  // Validate required fields before sending to worker
-  if (!cwd) {
-    throw new Error(`Missing cwd in PostToolUse hook input for session ${session_id}, tool ${tool_name}`);
-  }
 
   // Send to worker - worker handles privacy check and database operations
   const response = await fetch(`http://127.0.0.1:${port}/api/sessions/observations`, {

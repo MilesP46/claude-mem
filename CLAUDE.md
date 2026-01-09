@@ -76,6 +76,12 @@ Claude-mem is designed with a clean separation between open-source core function
 
 This architecture preserves the open-source nature of the project while enabling sustainable development through optional paid features.
 
+## Documented Subdirectories
+
+- `src/` - TypeScript source code (hooks, services, UI)
+- `scripts/` - Build automation, publishing, database utilities, debugging tools
+- `tests/` - Unit and integration tests (Bun test framework)
+
 ## Important
 
 No need to edit the changelog ever, it's generated automatically.

@@ -1,0 +1,27 @@
+---
+description: Request this rule before implementing logging or error handling.
+globs:
+alwaysApply: false
+---
+
+patterns:
+
+- "\*_/logging._"
+- "\*_/logger._"
+- "\*_/error_handler._"
+
+### Universal Logging Standard
+
+- Use project-level **`logger` package / service** (`src/common/logging.py` or `lib/logger.ts`) – never ad-hoc `print` / `console.log`.
+- Levels: TRACE (dev only) · DEBUG · INFO · WARN · ERROR · FATAL.
+- Emit JSON lines in prod; colourised text locally.
+- Route prod logs to <central sink> (e.g. OpenTelemetry → Grafana Loki); local logs to stdout.
+
+### Error Handling
+
+- Wrap entry-points with `try/except`; log stack-trace at ERROR; re-raise custom `AppError`.
+- Avoid silencing exceptions – if you must, log at WARN with rationale.
+
+### Testing
+
+- Integration tests must assert **no ERROR/FATAL** lines emitted for happy-path.

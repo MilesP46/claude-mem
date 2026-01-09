@@ -1,0 +1,54 @@
+---
+alwaysApply: false
+---
+
+# Test Organization Structure
+
+- Use the platform’s de-facto test runner (`pytest`, `vite`, `go test`, `xUnit`, etc.).
+- Use supporting test frameworks only when absolutely necessary (e.g., `jest` for JavaScript/TypeScript, `nose` for Python, `mocha` for Node.js, `JUnit` for Java, or others where required).
+- Prioritise unit tests for pure logic; integration tests for I/O & external services.
+- Write failing tests first when adding behaviour (TDD recommended).
+- Tests saved to `{{PROJECT_ROOT}}/tests/`
+
+- Ensure coverage does not decrease; target ≥90 % line coverage or project-specific goal.
+
+## Directory Structure
+
+```
+{{PROJECT_ROOT}}/tests/
+├── unit/                     # Pure logic, fast, isolated
+│   └── <area>/<component>/   # Group by logical area/component
+├── integration/              # I/O, external dependencies
+│   └── <area>/               # Interface & workflow tests
+├── e2e/                     # End-to-end user journeys
+│   ├── critical/            # Must-not-break scenarios
+│   └── extended/            # Extended coverage
+├── fixtures/                # Test data (area-specific + shared)
+├── helpers/                 # Test utilities
+└── mocks/                   # Mock implementations
+```
+
+## Test Categorization
+
+- **Unit**: Pure logic, no I/O, fast execution, stub tests expecting failures
+- **Integration**: External dependencies, interface contracts, multi-component workflows
+- **E2E**: Complete user journeys, critical path focus, external interface testing
+
+## Organization Strategy
+
+1. **Group by logical area**: Feature/module/component boundaries
+2. **Mirror code structure**: Test organization reflects source organization
+3. **Context-driven**: Use provided context to determine grouping
+4. **Fallback to code structure**: When in doubt, mirror existing source layout
+
+## Naming Conventions
+
+- **Files**: `test_<component>.py` or `<component>_test.py`
+- **Functions**: `test_<behavior>_<condition>_<expected_result>`
+- **Classes**: `Test<ComponentName>` or `<ComponentName>Test`
+
+## Quality Standards
+
+- **Coverage**: ≥90% line coverage for unit tests
+- **Independence**: Tests run independently and in parallel
+- **TDD Integration**: Red phase (failing stubs) → Green phase (implementation) → Refactor phase

@@ -559,6 +559,34 @@ export function ContextSettingsModal({
                 />
               </div>
             </CollapsibleSection>
+
+            {/* Section 5: Collection Controls */}
+            <CollapsibleSection
+              title="Collection Controls"
+              description="Control observation collection behavior"
+              defaultOpen={false}
+            >
+              <ToggleSwitch
+                id="collection-enabled"
+                label="Collection Enabled"
+                description="Enable or disable observation collection globally"
+                checked={formState.CLAUDE_MEM_COLLECTION_ENABLED === 'true'}
+                onChange={() => toggleBoolean('CLAUDE_MEM_COLLECTION_ENABLED')}
+              />
+
+              <FormField
+                label="Allowed Projects"
+                tooltip="Comma-separated project paths. Leave empty to collect for all projects."
+              >
+                <input
+                  type="text"
+                  className="input-text"
+                  value={formState.CLAUDE_MEM_ALLOWED_PROJECTS || ''}
+                  onChange={(e) => updateSetting('CLAUDE_MEM_ALLOWED_PROJECTS', e.target.value)}
+                  placeholder="/path/to/project1,/path/to/project2 (empty = all)"
+                />
+              </FormField>
+            </CollapsibleSection>
           </div>
         </div>
 

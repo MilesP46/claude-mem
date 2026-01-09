@@ -1,0 +1,18 @@
+---
+description: Enforce failing stubs for TDD
+globs:
+alwaysApply: true
+---
+
+# TDD Stub Failure Rule
+
+All stub or placeholder functions, methods, and classes **must** include a deliberate failure mechanism so that unit tests written in the red phase fail until the implementation is completed.
+
+Organize test stubs using: `{FOREMAN_ROOT/rules/test-organization.mdc}`
+
+- **Python** → `raise NotImplementedError`
+- **JavaScript/TypeScript** → `throw new Error('NotImplemented')`
+- **Go** → `panic("not implemented")`
+- **Other languages** → idiomatic equivalent that causes an exception/assertion failure
+
+> This guarantees meaningful red tests and enforces the TDD cycle across the codebase.

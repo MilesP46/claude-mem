@@ -1,0 +1,46 @@
+# GitHub Labels — canonical set for issues
+# Colors are 6-hex without '#'
+categories:
+  type:
+    feat: { color: "0E8A16", description: "Feature work" }
+    fix: { color: "D73A4A", description: "Bug fix" }
+    chore: { color: "6A737D", description: "Maintenance / chores" }
+    refactor: { color: "5319E7", description: "Refactoring" }
+
+  priority:
+    P0: { color: "B60205", description: "Critical" }
+    P1: { color: "D93F0B", description: "High" }
+    P2: { color: "FBCA04", description: "Normal" }
+
+  status:
+    todo: { color: "6A737D", description: "Planned / not started" }
+    in-progress: { color: "1F6FEB", description: "In progress" }
+    blocked: { color: "B60205", description: "Blocked" }
+    review: { color: "FBCA04", description: "In review" }
+    done: { color: "0E8A16", description: "Done" }
+    tdd:red: { color: "D73A4A", description: "TDD Red phase - failing tests" }
+
+  area:
+    api: { color: "0B7285", description: "API / Backend" }
+    ui: { color: "DB61A2", description: "UI / Frontend" }
+    db: { color: "B07219", description: "Database / Storage" }
+    infra: { color: "0052CC", description: "Infrastructure / IaC" }
+    security: { color: "E11D21", description: "Security" }
+    devex: { color: "5319E7", description: "Developer Experience" }
+    docs: { color: "0075CA", description: "Documentation" }
+
+  phase:
+    dev: { color: "94D2BD", description: "Development phase issue" }
+    build:
+      { color: "E9D8A6", description: "Build/system integration phase issue" }
+    deploy: { color: "EE9B00", description: "Deployment/release phase issue" }
+
+  dependency:
+    depends-on:
+      { color: "F9D0C4", description: "Blocked by: 'INSERT ISSUE NUMBER'" }
+    parallel-ok: { color: "BFDADC", description: "Parallel Issue" }
+    sequential: { color: "D4C5F9", description: "Sequential Issue" }
+
+  meta:
+    release:
+      { color: "0366D6", description: "Release grouping (e.g., release:12)" }

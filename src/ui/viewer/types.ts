@@ -88,6 +88,10 @@ export interface Settings {
   // Feature Toggles
   CLAUDE_MEM_CONTEXT_SHOW_LAST_SUMMARY?: string;
   CLAUDE_MEM_CONTEXT_SHOW_LAST_MESSAGE?: string;
+
+  // Collection Controls
+  CLAUDE_MEM_COLLECTION_ENABLED?: string;
+  CLAUDE_MEM_ALLOWED_PROJECTS?: string;
 }
 
 export interface WorkerStats {

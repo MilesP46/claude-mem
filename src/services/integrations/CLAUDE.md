@@ -1,0 +1,48 @@
+# Integrations Memory
+
+## Purpose & Entry Points
+
+IDE integration layer for external editors. Currently supports Cursor IDE with hooks, MCP configuration, and auto-context updates.
+
+- `index.ts` - Barrel exports all public APIs
+- `CursorHooksInstaller.ts` - Main integration logic (669 lines)
+
+## Patterns
+
+- **Barrel exports** - All public APIs through index.ts
+- **Platform detection** - `detectPlatform()` returns 'windows' | 'unix' for script selection
+- **Path search pattern** - Functions like `findCursorHooksDir()` search multiple locations (marketplace, source, cwd)
+- **Registry pattern** - Project registry in `~/.claude-mem/cursor-projects.json` tracks installed projects
+
+## Key APIs & Interactions
+
+**Core Functions:**
+- `handleCursorCommand(subcommand, args)` - CLI entry point for cursor subcommands
+- `installCursorHooks(sourceDir, target)` - Install hooks to project/user/enterprise
+- `uninstallCursorHooks(target)` - Remove hooks and cleanup
+- `configureCursorMcp(target)` - Add claude-mem to Cursor's mcp.json
+- `updateCursorContextForProject(projectName, port)` - Refresh context file after sessions
+
+**Types:**
+- `CursorInstallTarget` - 'project' | 'user' | 'enterprise'
+- `CursorHooksJson` - hooks.json structure with lifecycle events
+- `CursorMcpConfig` - mcp.json structure
+
+**Dependencies:**
+- Imports `cursor-utils.ts` for registry/context file operations
+- Imports `worker-utils.ts` for port detection
+- Called by worker-service CLI for `cursor` subcommand
+
+## Dos & Don'ts
+
+- DO use `getTargetDir()` for cross-platform path resolution
+- DO check `findCursorHooksDir()` return value (can be null)
+- DO register projects after installation for auto-context updates
+- DON'T hardcode paths - use platform detection functions
+- DON'T assume worker is running - handle fetch failures gracefully
+
+## Documented Subdirectories
+
+None
+
+**Other:** None

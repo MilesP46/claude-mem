@@ -1,0 +1,43 @@
+# SQLite Tests
+
+Unit tests for the SQLite database layer modules in `src/services/sqlite/`.
+
+## Test Patterns
+
+- **Framework:** Bun test (`bun:test`)
+- **Database:** In-memory SQLite (`ClaudeMemDatabase(':memory:')`)
+- **Lifecycle:** Fresh DB per test via `beforeEach`/`afterEach`
+- **Fixtures:** Helper functions create valid test inputs (e.g., `createObservationInput()`, `createSummaryInput()`)
+- **FK Setup:** Tests create sessions with memory IDs before testing dependent entities
+
+## Test Files
+
+| File | Module Under Test | Coverage |
+|------|-------------------|----------|
+| `observations.test.ts` | Observations.js | Store, getById, getRecent, timestamps |
+| `transactions.test.ts` | transactions.js | Atomic multi-observation storage, mark complete |
+| `sessions.test.ts` | Sessions.js | Create, getById, updateMemorySessionId, idempotency |
+| `summaries.test.ts` | Summaries.js | Store, getForSession, multi-summary ordering |
+| `prompts.test.ts` | Prompts.js | Save, getPromptNumber, session isolation |
+
+## Adding New Tests
+
+```typescript
+import { describe, it, expect, beforeEach, afterEach } from 'bun:test';
+import { ClaudeMemDatabase } from '../../src/services/sqlite/Database.js';
+import type { Database } from 'bun:sqlite';
+
+describe('Module', () => {
+  let db: Database;
+  beforeEach(() => { db = new ClaudeMemDatabase(':memory:').db; });
+  afterEach(() => { db.close(); });
+  // tests...
+});
+```
+
+## Running Tests
+
+```bash
+bun test tests/sqlite/           # All SQLite tests
+bun test tests/sqlite/sessions   # Specific file
+```

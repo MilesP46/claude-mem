@@ -1,0 +1,97 @@
+# GitHub Actions — Multi‑stack Template (to be specialized by Pipeline Agent)
+
+# Copy as `.github/workflows/ci.yml` and tailor for the detected stack.
+name: CI
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main, 'feat/**', 'fix/**' ]
+
+jobs:
+  detect-stack:
+    runs-on: ubuntu-latest
+    outputs:
+      is_rails: ${{ steps.detect.outputs.rails }}
+      is_node: ${{ steps.detect.outputs.node }}
+      is_python: ${{ steps.detect.outputs.python }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: detect
+        run: |
+          echo "rails=$(test -f Gemfile && grep -qi 'rails' Gemfile && echo true || echo false)" >> $GITHUB_OUTPUT
+          echo "node=$(test -f package.json && echo true || echo false)" >> $GITHUB_OUTPUT
+          echo "python=$(test -f pyproject.toml || test -f requirements.txt && echo true || echo false)" >> $GITHUB_OUTPUT
+
+  rails:
+    needs: detect-stack
+    if: needs.detect-stack.outputs.is_rails == 'true'
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with: { ruby-version: '3.3' }
+      - run: |
+          bundle install --jobs 4 --retry 3
+          bin/rails db:prepare
+          bundle exec rspec
+
+  node:
+    needs: detect-stack
+    if: needs.detect-stack.outputs.is_node == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: |
+          if [ -f pnpm-lock.yaml ]; then npm i -g pnpm && pnpm i && pnpm test; \
+          elif [ -f bun.lockb ]; then curl -fsSL https://bun.sh/install | bash && bun i && bun test; \
+          else npm ci && npm test; fi
+
+  python:
+    needs: detect-stack
+    if: needs.detect-stack.outputs.is_python == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: |
+          pip install -r requirements.txt || true
+          pytest -q
+
+  bdd:
+    needs: [detect-stack, node]
+    if: always() && needs.detect-stack.outputs.is_node == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: |
+          npm i -D @playwright/test
+          npx playwright install --with-deps
+          # If MCP server is available, export MCP_PLAYWRIGHT_URL
+          npm run e2e || npx playwright test
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          if [ -f package.json ]; then npm run lint || true; fi
+          if [ -f Gemfile ]; then bundle exec rubocop || true; fi
+          if [ -f pyproject.toml ] || [ -f requirements.txt ]; then ruff check . || true; fi

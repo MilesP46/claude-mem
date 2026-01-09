@@ -49,6 +49,9 @@ export interface SettingsDefaults {
   // Feature Toggles
   CLAUDE_MEM_CONTEXT_SHOW_LAST_SUMMARY: string;
   CLAUDE_MEM_CONTEXT_SHOW_LAST_MESSAGE: string;
+  // Collection Controls
+  CLAUDE_MEM_COLLECTION_ENABLED: string;
+  CLAUDE_MEM_ALLOWED_PROJECTS: string;
 }
 
 export class SettingsDefaultsManager {
@@ -93,6 +96,9 @@ export class SettingsDefaultsManager {
     // Feature Toggles
     CLAUDE_MEM_CONTEXT_SHOW_LAST_SUMMARY: 'true',
     CLAUDE_MEM_CONTEXT_SHOW_LAST_MESSAGE: 'false',
+    // Collection Controls
+    CLAUDE_MEM_COLLECTION_ENABLED: 'true',
+    CLAUDE_MEM_ALLOWED_PROJECTS: '',
   };
 
   /**
@@ -103,10 +109,10 @@ export class SettingsDefaultsManager {
   }
 
   /**
-   * Get a default value from defaults (no environment variable override)
+   * Get a default value, checking environment variable first then falling back to defaults
    */
   static get(key: keyof SettingsDefaults): string {
-    return this.DEFAULTS[key];
+    return process.env[key] || this.DEFAULTS[key];
   }
 
   /**

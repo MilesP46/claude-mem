@@ -1,0 +1,53 @@
+# Translate README Memory
+
+## Purpose & Entry Points
+
+README translation utility using Claude Agent SDK for AI-powered multilingual documentation.
+
+- `index.ts` - Core translation logic with `translateReadme()` export
+- `cli.ts` - Bun-based CLI: `translate-readme <source> <languages...>`
+- `examples.ts` - Integration patterns for build scripts and CI/CD
+
+## Patterns
+
+- **Claude Agent SDK** - Uses `query()` with streaming for translation
+- **Content caching** - SHA-256 hash of source; cache in `.translation-cache.json`
+- **Parallel execution** - Up to 10 concurrent translations with budget tracking
+- **Code preservation** - Preserves code blocks, inline code, paths, URLs by default
+
+## Key APIs & Interactions
+
+**Primary Export:**
+```typescript
+translateReadme(options: TranslationOptions): Promise<TranslationJobResult>
+```
+
+**Options:** `source`, `languages[]`, `outputDir`, `pattern`, `preserveCode`, `model`, `maxBudgetUsd`, `force`, `verbose`
+
+**Result:** `{ results[], totalCostUsd, successful, failed }`
+
+**Constants:** `SUPPORTED_LANGUAGES` - 30+ language codes (zh, ja, es, de, fr, ko, etc.)
+
+## CLI Usage
+
+```bash
+# Basic translation
+translate-readme README.md es fr de
+
+# Custom output with verbose
+translate-readme -v -o ./i18n --pattern docs.{lang}.md README.md ja ko zh
+
+# Force re-translation (ignore cache)
+translate-readme -f README.md es
+```
+
+## Dos & Don'ts
+
+- **DO** use caching - only re-translates when source changes
+- **DO** set `maxBudgetUsd` in CI to control costs
+- **DON'T** translate code blocks - use `preserveCode: true` (default)
+- **DON'T** skip language validation - invalid codes will error
+
+## Dependencies
+
+None (standalone utility, no cross-cutting concerns)

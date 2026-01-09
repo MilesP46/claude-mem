@@ -1,0 +1,537 @@
+# Interactive Prototypes — Release {X} — **Instructions**
+
+- **Template file:** `templates/ui-design/interactive-prototypes-template.md`
+- **Who fills this:** Senior UX Designer or UI/UX lead with comprehensive design and prototyping expertise
+- **Editing rules:** Keep headings intact; focus on interactive specification and prototype definition; use ASCII art for layouts; write concise, actionable content; prefer bullets over prose where possible.
+
+## How to use
+1. Duplicate this template into the target release folder (see final save location if specified).
+2. Fill in all placeholders and required sections.
+3. Keep **structure** and headings unchanged unless explicitly allowed.
+4. Commit the completed file to the release docs.
+
+## Placeholders
+Replace every placeholder of the form `{{…}}` with a concrete value:
+  - `Accessibility_compliance_question` — provide an explicit value; do **not** leave braces.
+  - `Detail View Screen Name` — provide an explicit value; do **not** leave braces.
+  - `Data Viewer Screen Name` — provide an explicit value; do **not** leave braces.
+  - `Management Screen Name` — provide an explicit value; do **not** leave braces.
+  - `Performance_requirement_question` — provide an explicit value; do **not** leave braces.
+  - `Primary Screen Name` — provide an explicit value; do **not** leave braces.
+  - `Prototype_assumption_or_question` — provide an explicit value; do **not** leave braces.
+  - `Secondary Screen Name` — provide an explicit value; do **not** leave braces.
+  - `Setup Screen Name` — provide an explicit value; do **not** leave braces.
+  - `Technical_implementation_question` — provide an explicit value; do **not** leave braces.
+  - `User_interaction_assumption` — provide an explicit value; do **not** leave braces.
+  - `X` — provide an explicit value; do **not** leave braces.
+  - `action_1` — provide an explicit value; do **not** leave braces.
+  - `action_2` — provide an explicit value; do **not** leave braces.
+  - `action_3` — provide an explicit value; do **not** leave braces.
+  - `action_4` — provide an explicit value; do **not** leave braces.
+  - `action_5` — provide an explicit value; do **not** leave braces.
+  - `action_6` — provide an explicit value; do **not** leave braces.
+  - `action_bar_content` — provide an explicit value; do **not** leave braces.
+  - `action_buttons_1` — provide an explicit value; do **not** leave braces.
+  - `action_buttons_2` — provide an explicit value; do **not** leave braces.
+  - `action_result_screen` — provide an explicit value; do **not** leave braces.
+  - `activity_1_description` — provide an explicit value; do **not** leave braces.
+  - `activity_1_timestamp` — provide an explicit value; do **not** leave braces.
+  - `activity_2_description` — provide an explicit value; do **not** leave braces.
+  - `activity_2_timestamp` — provide an explicit value; do **not** leave braces.
+  - `activity_3_description` — provide an explicit value; do **not** leave braces.
+  - `activity_3_timestamp` — provide an explicit value; do **not** leave braces.
+  - `activity_4_description` — provide an explicit value; do **not** leave braces.
+  - `activity_4_timestamp` — provide an explicit value; do **not** leave braces.
+  - `add_manual_entry_button` — provide an explicit value; do **not** leave braces.
+  - `api_layer_description` — provide an explicit value; do **not** leave braces.
+  - `application_name` — provide an explicit value; do **not** leave braces.
+  - `back_navigation` — provide an explicit value; do **not** leave braces.
+  - `breakpoint_desktop` — provide an explicit value; do **not** leave braces.
+  - `breakpoint_desktop_name` — provide an explicit value; do **not** leave braces.
+  - `breakpoint_large` — provide an explicit value; do **not** leave braces.
+  - `breakpoint_mobile` — provide an explicit value; do **not** leave braces.
+  - `breakpoint_mobile_name` — provide an explicit value; do **not** leave braces.
+  - `breakpoint_tablet` — provide an explicit value; do **not** leave braces.
+  - `breakpoint_tablet_name` — provide an explicit value; do **not** leave braces.
+  - `cache_strategy_1` — provide an explicit value; do **not** leave braces.
+  - `cache_strategy_2` — provide an explicit value; do **not** leave braces.
+  - `cache_strategy_3` — provide an explicit value; do **not** leave braces.
+  - `cache_strategy_4` — provide an explicit value; do **not** leave braces.
+  - `cache_type_1` — provide an explicit value; do **not** leave braces.
+  - `cache_type_2` — provide an explicit value; do **not** leave braces.
+  - `cache_type_3` — provide an explicit value; do **not** leave braces.
+  - `cache_type_4` — provide an explicit value; do **not** leave braces.
+  - `card_1` — provide an explicit value; do **not** leave braces.
+  - `card_2` — provide an explicit value; do **not** leave braces.
+  - `card_3` — provide an explicit value; do **not** leave braces.
+  - `card_actions` — provide an explicit value; do **not** leave braces.
+  - `card_metric_1` — provide an explicit value; do **not** leave braces.
+  - `card_metric_2` — provide an explicit value; do **not** leave braces.
+  - `card_status` — provide an explicit value; do **not** leave braces.
+  - `card_title` — provide an explicit value; do **not** leave braces.
+  - `card_value_1` — provide an explicit value; do **not** leave braces.
+  - `card_value_2` — provide an explicit value; do **not** leave braces.
+  - `completion_screen` — provide an explicit value; do **not** leave braces.
+  - `component_state_1` — provide an explicit value; do **not** leave braces.
+  - `component_state_1_description` — provide an explicit value; do **not** leave braces.
+  - `component_state_2` — provide an explicit value; do **not** leave braces.
+  - `component_state_2_description` — provide an explicit value; do **not** leave braces.
+  - `component_state_3` — provide an explicit value; do **not** leave braces.
+  - `component_state_3_description` — provide an explicit value; do **not** leave braces.
+  - `component_state_4` — provide an explicit value; do **not** leave braces.
+  - `component_state_4_description` — provide an explicit value; do **not** leave braces.
+  - `confirmation_description_1` — provide an explicit value; do **not** leave braces.
+  - `confirmation_description_2` — provide an explicit value; do **not** leave braces.
+  - `confirmation_description_3` — provide an explicit value; do **not** leave braces.
+  - `confirmation_description_4` — provide an explicit value; do **not** leave braces.
+  - `confirmation_pattern_1` — provide an explicit value; do **not** leave braces.
+  - `confirmation_pattern_2` — provide an explicit value; do **not** leave braces.
+  - `confirmation_pattern_3` — provide an explicit value; do **not** leave braces.
+  - `confirmation_pattern_4` — provide an explicit value; do **not** leave braces.
+  - `convergence_point` — provide an explicit value; do **not** leave braces.
+  - `count` — provide an explicit value; do **not** leave braces.
+  - `create_new_button` — provide an explicit value; do **not** leave braces.
+  - `current_step` — provide an explicit value; do **not** leave braces.
+  - `danger_button` — provide an explicit value; do **not** leave braces.
+  - `danger_label` — provide an explicit value; do **not** leave braces.
+  - `danger_label_2` — provide an explicit value; do **not** leave braces.
+  - `danger_style` — provide an explicit value; do **not** leave braces.
+  - `data_entity_filter_structure` — provide an explicit value; do **not** leave braces.
+  - `data_entity_list_structure` — provide an explicit value; do **not** leave braces.
+  - `data_format_1` — provide an explicit value; do **not** leave braces.
+  - `data_format_2` — provide an explicit value; do **not** leave braces.
+  - `data_line_1` — provide an explicit value; do **not** leave braces.
+  - `data_line_2` — provide an explicit value; do **not** leave braces.
+  - `data_line_3` — provide an explicit value; do **not** leave braces.
+  - `data_line_4` — provide an explicit value; do **not** leave braces.
+  - `data_line_5` — provide an explicit value; do **not** leave braces.
+  - `data_service_layer_description` — provide an explicit value; do **not** leave braces.
+  - `data_source_name` — provide an explicit value; do **not** leave braces.
+  - `data_source_title` — provide an explicit value; do **not** leave braces.
+  - `desktop_adaptation_1` — provide an explicit value; do **not** leave braces.
+  - `desktop_adaptation_2` — provide an explicit value; do **not** leave braces.
+  - `desktop_adaptation_3` — provide an explicit value; do **not** leave braces.
+  - `desktop_adaptation_4` — provide an explicit value; do **not** leave braces.
+  - `desktop_behavior_1` — provide an explicit value; do **not** leave braces.
+  - `desktop_behavior_2` — provide an explicit value; do **not** leave braces.
+  - `desktop_behavior_3` — provide an explicit value; do **not** leave braces.
+  - `desktop_behavior_4` — provide an explicit value; do **not** leave braces.
+  - `desktop_range` — provide an explicit value; do **not** leave braces.
+  - `detail_1` — provide an explicit value; do **not** leave braces.
+  - `detail_1_value` — provide an explicit value; do **not** leave braces.
+  - `detail_2` — provide an explicit value; do **not** leave braces.
+  - `detail_2_value` — provide an explicit value; do **not** leave braces.
+  - `detail_3` — provide an explicit value; do **not** leave braces.
+  - `detail_3_value` — provide an explicit value; do **not** leave braces.
+  - `detail_4` — provide an explicit value; do **not** leave braces.
+  - `detail_4_value` — provide an explicit value; do **not** leave braces.
+  - `detail_5` — provide an explicit value; do **not** leave braces.
+  - `detail_5_value` — provide an explicit value; do **not** leave braces.
+  - `details_1` — provide an explicit value; do **not** leave braces.
+  - `details_2` — provide an explicit value; do **not** leave braces.
+  - `details_3` — provide an explicit value; do **not** leave braces.
+  - `details_4` — provide an explicit value; do **not** leave braces.
+  - `details_5` — provide an explicit value; do **not** leave braces.
+  - `details_6` — provide an explicit value; do **not** leave braces.
+  - `discovery_action` — provide an explicit value; do **not** leave braces.
+  - `discovery_status_icon` — provide an explicit value; do **not** leave braces.
+  - `discovered_item_1` — provide an explicit value; do **not** leave braces.
+  - `discovered_item_2` — provide an explicit value; do **not** leave braces.
+  - `discovered_item_3` — provide an explicit value; do **not** leave braces.
+  - `discovered_items_title` — provide an explicit value; do **not** leave braces.
+  - `download_controls` — provide an explicit value; do **not** leave braces.
+  - `element_1_behavior` — provide an explicit value; do **not** leave braces.
+  - `element_2_behavior` — provide an explicit value; do **not** leave braces.
+  - `element_3_behavior` — provide an explicit value; do **not** leave braces.
+  - `element_4_behavior` — provide an explicit value; do **not** leave braces.
+  - `entity_1` — provide an explicit value; do **not** leave braces.
+  - `entity_2` — provide an explicit value; do **not** leave braces.
+  - `entity_3` — provide an explicit value; do **not** leave braces.
+  - `entity_4` — provide an explicit value; do **not** leave braces.
+  - `entity_5` — provide an explicit value; do **not** leave braces.
+  - `entity_6` — provide an explicit value; do **not** leave braces.
+  - `entity_details` — provide an explicit value; do **not** leave braces.
+  - `entity_name` — provide an explicit value; do **not** leave braces.
+  - `error_color` — provide an explicit value; do **not** leave braces.
+  - `error_handling_1` — provide an explicit value; do **not** leave braces.
+  - `error_handling_2` — provide an explicit value; do **not** leave braces.
+  - `error_handling_3` — provide an explicit value; do **not** leave braces.
+  - `error_handling_4` — provide an explicit value; do **not** leave braces.
+  - `error_handling_description_1` — provide an explicit value; do **not** leave braces.
+  - `error_handling_description_2` — provide an explicit value; do **not** leave braces.
+  - `error_handling_description_3` — provide an explicit value; do **not** leave braces.
+  - `error_handling_description_4` — provide an explicit value; do **not** leave braces.
+  - `external_system_1` — provide an explicit value; do **not** leave braces.
+  - `external_system_2` — provide an explicit value; do **not** leave braces.
+  - `feature_1` — provide an explicit value; do **not** leave braces.
+  - `feature_2` — provide an explicit value; do **not** leave braces.
+  - `feature_3` — provide an explicit value; do **not** leave braces.
+  - `feedback_description_1` — provide an explicit value; do **not** leave braces.
+  - `feedback_description_2` — provide an explicit value; do **not** leave braces.
+  - `feedback_description_3` — provide an explicit value; do **not** leave braces.
+  - `feedback_description_4` — provide an explicit value; do **not** leave braces.
+  - `feedback_pattern_1` — provide an explicit value; do **not** leave braces.
+  - `feedback_pattern_2` — provide an explicit value; do **not** leave braces.
+  - `feedback_pattern_3` — provide an explicit value; do **not** leave braces.
+  - `feedback_pattern_4` — provide an explicit value; do **not** leave braces.
+  - `filter_controls` — provide an explicit value; do **not** leave braces.
+  - `foreman` — provide an explicit value; do **not** leave braces.
+  - `header_content` — provide an explicit value; do **not** leave braces.
+  - `i1` — provide an explicit value; do **not** leave braces.
+  - `i2` — provide an explicit value; do **not** leave braces.
+  - `i3` — provide an explicit value; do **not** leave braces.
+  - `i4` — provide an explicit value; do **not** leave braces.
+  - `i5` — provide an explicit value; do **not** leave braces.
+  - `i6` — provide an explicit value; do **not** leave braces.
+  - `icon_1` — provide an explicit value; do **not** leave braces.
+  - `icon_2` — provide an explicit value; do **not** leave braces.
+  - `icon_3` — provide an explicit value; do **not** leave braces.
+  - `icon_4` — provide an explicit value; do **not** leave braces.
+  - `icon_button` — provide an explicit value; do **not** leave braces.
+  - `icon_style` — provide an explicit value; do **not** leave braces.
+  - `initial_user_decision` — provide an explicit value; do **not** leave braces.
+  - `input_field_1` — provide an explicit value; do **not** leave braces.
+  - `input_field_2` — provide an explicit value; do **not** leave braces.
+  - `interactive_element_1` — provide an explicit value; do **not** leave braces.
+  - `interactive_element_2` — provide an explicit value; do **not** leave braces.
+  - `interactive_element_3` — provide an explicit value; do **not** leave braces.
+  - `interactive_element_4` — provide an explicit value; do **not** leave braces.
+  - `item_1_status` — provide an explicit value; do **not** leave braces.
+  - `item_2_status` — provide an explicit value; do **not** leave braces.
+  - `item_3_status` — provide an explicit value; do **not** leave braces.
+  - `item_actions` — provide an explicit value; do **not** leave braces.
+  - `item_description` — provide an explicit value; do **not** leave braces.
+  - `item_details` — provide an explicit value; do **not** leave braces.
+  - `item_timestamp` — provide an explicit value; do **not** leave braces.
+  - `item_type` — provide an explicit value; do **not** leave braces.
+  - `keyboard_behavior_1` — provide an explicit value; do **not** leave braces.
+  - `keyboard_behavior_2` — provide an explicit value; do **not** leave braces.
+  - `keyboard_behavior_3` — provide an explicit value; do **not** leave braces.
+  - `keyboard_behavior_4` — provide an explicit value; do **not** leave braces.
+  - `keyboard_feature_1` — provide an explicit value; do **not** leave braces.
+  - `keyboard_feature_2` — provide an explicit value; do **not** leave braces.
+  - `keyboard_feature_3` — provide an explicit value; do **not** leave braces.
+  - `keyboard_feature_4` — provide an explicit value; do **not** leave braces.
+  - `large_desktop_range` — provide an explicit value; do **not** leave braces.
+  - `limitation_description_1` — provide an explicit value; do **not** leave braces.
+  - `limitation_description_2` — provide an explicit value; do **not** leave braces.
+  - `limitation_description_3` — provide an explicit value; do **not** leave braces.
+  - `live_metrics` — provide an explicit value; do **not** leave braces.
+  - `loading_animation` — provide an explicit value; do **not** leave braces.
+  - `loading_state_1` — provide an explicit value; do **not** leave braces.
+  - `loading_state_2` — provide an explicit value; do **not** leave braces.
+  - `loading_state_3` — provide an explicit value; do **not** leave braces.
+  - `loading_state_4` — provide an explicit value; do **not** leave braces.
+  - `loading_visual_1` — provide an explicit value; do **not** leave braces.
+  - `loading_visual_2` — provide an explicit value; do **not** leave braces.
+  - `loading_visual_3` — provide an explicit value; do **not** leave braces.
+  - `loading_visual_4` — provide an explicit value; do **not** leave braces.
+  - `m1` — provide an explicit value; do **not** leave braces.
+  - `m2` — provide an explicit value; do **not** leave braces.
+  - `m3` — provide an explicit value; do **not** leave braces.
+  - `m4` — provide an explicit value; do **not** leave braces.
+  - `m5` — provide an explicit value; do **not** leave braces.
+  - `m6` — provide an explicit value; do **not** leave braces.
+  - `main_content_area` — provide an explicit value; do **not** leave braces.
+  - `management_title` — provide an explicit value; do **not** leave braces.
+  - `manual_entry_field_1` — provide an explicit value; do **not** leave braces.
+  - `manual_entry_field_2` — provide an explicit value; do **not** leave braces.
+  - `manual_entry_title` — provide an explicit value; do **not** leave braces.
+  - `metric_1` — provide an explicit value; do **not** leave braces.
+  - `metric_1_name` — provide an explicit value; do **not** leave braces.
+  - `metric_1_percentage` — provide an explicit value; do **not** leave braces.
+  - `metric_1_visualization` — provide an explicit value; do **not** leave braces.
+  - `metric_2` — provide an explicit value; do **not** leave braces.
+  - `metric_2_name` — provide an explicit value; do **not** leave braces.
+  - `metric_2_percentage` — provide an explicit value; do **not** leave braces.
+  - `metric_2_visualization` — provide an explicit value; do **not** leave braces.
+  - `metric_3` — provide an explicit value; do **not** leave braces.
+  - `metric_3_name` — provide an explicit value; do **not** leave braces.
+  - `metric_3_percentage` — provide an explicit value; do **not** leave braces.
+  - `metric_3_visualization` — provide an explicit value; do **not** leave braces.
+  - `metric_4` — provide an explicit value; do **not** leave braces.
+  - `metric_4_name` — provide an explicit value; do **not** leave braces.
+  - `metric_4_percentage` — provide an explicit value; do **not** leave braces.
+  - `metric_4_visualization` — provide an explicit value; do **not** leave braces.
+  - `metric_a` — provide an explicit value; do **not** leave braces.
+  - `metric_b` — provide an explicit value; do **not** leave braces.
+  - `metric_c` — provide an explicit value; do **not** leave braces.
+  - `metric_d` — provide an explicit value; do **not** leave braces.
+  - `mobile_adaptation_1` — provide an explicit value; do **not** leave braces.
+  - `mobile_adaptation_2` — provide an explicit value; do **not** leave braces.
+  - `mobile_adaptation_3` — provide an explicit value; do **not** leave braces.
+  - `mobile_adaptation_4` — provide an explicit value; do **not** leave braces.
+  - `mobile_behavior_1` — provide an explicit value; do **not** leave braces.
+  - `mobile_behavior_2` — provide an explicit value; do **not** leave braces.
+  - `mobile_behavior_3` — provide an explicit value; do **not** leave braces.
+  - `mobile_behavior_4` — provide an explicit value; do **not** leave braces.
+  - `mobile_range` — provide an explicit value; do **not** leave braces.
+  - `modal_cancel_button` — provide an explicit value; do **not** leave braces.
+  - `modal_confirm_button` — provide an explicit value; do **not** leave braces.
+  - `modal_content_line_1` — provide an explicit value; do **not** leave braces.
+  - `modal_content_line_2` — provide an explicit value; do **not** leave braces.
+  - `modal_content_line_3` — provide an explicit value; do **not** leave braces.
+  - `modal_content_line_4` — provide an explicit value; do **not** leave braces.
+  - `modal_title` — provide an explicit value; do **not** leave braces.
+  - `module_1` — provide an explicit value; do **not** leave braces.
+  - `module_2` — provide an explicit value; do **not** leave braces.
+  - `module_3` — provide an explicit value; do **not** leave braces.
+  - `module_4` — provide an explicit value; do **not** leave braces.
+  - `nav_breadcrumb_pattern` — provide an explicit value; do **not** leave braces.
+  - `nav_breadcrumbs` — provide an explicit value; do **not** leave braces.
+  - `nav_context_action_pattern` — provide an explicit value; do **not** leave braces.
+  - `nav_context_actions` — provide an explicit value; do **not** leave braces.
+  - `nav_context_tab_1` — provide an explicit value; do **not** leave braces.
+  - `nav_context_tab_2` — provide an explicit value; do **not** leave braces.
+  - `nav_context_tab_3` — provide an explicit value; do **not** leave braces.
+  - `nav_context_tab_4` — provide an explicit value; do **not** leave braces.
+  - `nav_context_tabs` — provide an explicit value; do **not** leave braces.
+  - `nav_home_behavior` — provide an explicit value; do **not** leave braces.
+  - `nav_logo_home` — provide an explicit value; do **not** leave braces.
+  - `nav_main_tabs` — provide an explicit value; do **not** leave braces.
+  - `nav_mobile_gesture_pattern` — provide an explicit value; do **not** leave braces.
+  - `nav_mobile_gestures` — provide an explicit value; do **not** leave braces.
+  - `nav_mobile_menu` — provide an explicit value; do **not** leave braces.
+  - `nav_mobile_menu_behavior` — provide an explicit value; do **not** leave braces.
+  - `nav_mobile_tab_pattern` — provide an explicit value; do **not** leave braces.
+  - `nav_mobile_tabs` — provide an explicit value; do **not** leave braces.
+  - `nav_tab_1` — provide an explicit value; do **not** leave braces.
+  - `nav_tab_2` — provide an explicit value; do **not** leave braces.
+  - `nav_tab_3` — provide an explicit value; do **not** leave braces.
+  - `nav_tab_4` — provide an explicit value; do **not** leave braces.
+  - `nav_tab_5` — provide an explicit value; do **not** leave braces.
+  - `nav_user_action_1` — provide an explicit value; do **not** leave braces.
+  - `nav_user_action_2` — provide an explicit value; do **not** leave braces.
+  - `nav_user_action_3` — provide an explicit value; do **not** leave braces.
+  - `nav_user_actions` — provide an explicit value; do **not** leave braces.
+  - `navigation_elements` — provide an explicit value; do **not** leave braces.
+  - `navigation_state` — provide an explicit value; do **not** leave braces.
+  - `network_optimization_1` — provide an explicit value; do **not** leave braces.
+  - `network_optimization_2` — provide an explicit value; do **not** leave braces.
+  - `network_optimization_3` — provide an explicit value; do **not** leave braces.
+  - `network_optimization_4` — provide an explicit value; do **not** leave braces.
+  - `network_strategy_1` — provide an explicit value; do **not** leave braces.
+  - `network_strategy_2` — provide an explicit value; do **not** leave braces.
+  - `network_strategy_3` — provide an explicit value; do **not** leave braces.
+  - `network_strategy_4` — provide an explicit value; do **not** leave braces.
+  - `next_action_or_exit` — provide an explicit value; do **not** leave braces.
+  - `next_button` — provide an explicit value; do **not** leave braces.
+  - `notification_action_1` — provide an explicit value; do **not** leave braces.
+  - `notification_action_2` — provide an explicit value; do **not** leave braces.
+  - `notification_delivery_1` — provide an explicit value; do **not** leave braces.
+  - `notification_delivery_2` — provide an explicit value; do **not** leave braces.
+  - `notification_persistence_1` — provide an explicit value; do **not** leave braces.
+  - `notification_persistence_2` — provide an explicit value; do **not** leave braces.
+  - `notification_type_1` — provide an explicit value; do **not** leave braces.
+  - `notification_type_2` — provide an explicit value; do **not** leave braces.
+  - `path_1_condition` — provide an explicit value; do **not** leave braces.
+  - `path_1_destination` — provide an explicit value; do **not** leave braces.
+  - `path_2_condition` — provide an explicit value; do **not** leave braces.
+  - `path_2_destination` — provide an explicit value; do **not** leave braces.
+  - `performance_consideration_1` — provide an explicit value; do **not** leave braces.
+  - `performance_consideration_2` — provide an explicit value; do **not** leave braces.
+  - `performance_consideration_3` — provide an explicit value; do **not** leave braces.
+  - `performance_consideration_4` — provide an explicit value; do **not** leave braces.
+  - `performance_strategy_1` — provide an explicit value; do **not** leave braces.
+  - `performance_strategy_2` — provide an explicit value; do **not** leave braces.
+  - `performance_strategy_3` — provide an explicit value; do **not** leave braces.
+  - `performance_strategy_4` — provide an explicit value; do **not** leave braces.
+  - `primary_action_screen` — provide an explicit value; do **not** leave braces.
+  - `primary_button` — provide an explicit value; do **not** leave braces.
+  - `primary_label` — provide an explicit value; do **not** leave braces.
+  - `primary_label_2` — provide an explicit value; do **not** leave braces.
+  - `primary_label_3` — provide an explicit value; do **not** leave braces.
+  - `primary_navigation_tabs` — provide an explicit value; do **not** leave braces.
+  - `primary_style` — provide an explicit value; do **not** leave braces.
+  - `progress_bar` — provide an explicit value; do **not** leave braces.
+  - `prototype_deliverable_1` — provide an explicit value; do **not** leave braces.
+  - `prototype_deliverable_2` — provide an explicit value; do **not** leave braces.
+  - `prototype_deliverable_3` — provide an explicit value; do **not** leave braces.
+  - `prototype_description_1` — provide an explicit value; do **not** leave braces.
+  - `prototype_description_2` — provide an explicit value; do **not** leave braces.
+  - `prototype_description_3` — provide an explicit value; do **not** leave braces.
+  - `prototype_feature_1` — provide an explicit value; do **not** leave braces.
+  - `prototype_feature_2` — provide an explicit value; do **not** leave braces.
+  - `prototype_feature_3` — provide an explicit value; do **not** leave braces.
+  - `prototype_feature_4` — provide an explicit value; do **not** leave braces.
+  - `prototype_feature_description_1` — provide an explicit value; do **not** leave braces.
+  - `prototype_feature_description_2` — provide an explicit value; do **not** leave braces.
+  - `prototype_feature_description_3` — provide an explicit value; do **not** leave braces.
+  - `prototype_feature_description_4` — provide an explicit value; do **not** leave braces.
+  - `prototype_limitation_1` — provide an explicit value; do **not** leave braces.
+  - `prototype_limitation_2` — provide an explicit value; do **not** leave braces.
+  - `prototype_limitation_3` — provide an explicit value; do **not** leave braces.
+  - `quick_actions` — provide an explicit value; do **not** leave braces.
+  - `real_time_layer_description` — provide an explicit value; do **not** leave braces.
+  - `realtime_data_type_1` — provide an explicit value; do **not** leave braces.
+  - `realtime_data_type_2` — provide an explicit value; do **not** leave braces.
+  - `realtime_description_1` — provide an explicit value; do **not** leave braces.
+  - `realtime_description_2` — provide an explicit value; do **not** leave braces.
+  - `realtime_description_3` — provide an explicit value; do **not** leave braces.
+  - `realtime_description_4` — provide an explicit value; do **not** leave braces.
+  - `realtime_pattern_1` — provide an explicit value; do **not** leave braces.
+  - `realtime_pattern_2` — provide an explicit value; do **not** leave braces.
+  - `realtime_pattern_3` — provide an explicit value; do **not** leave braces.
+  - `realtime_pattern_4` — provide an explicit value; do **not** leave braces.
+  - `realtime_performance_1` — provide an explicit value; do **not** leave braces.
+  - `realtime_performance_2` — provide an explicit value; do **not** leave braces.
+  - `realtime_performance_3` — provide an explicit value; do **not** leave braces.
+  - `realtime_performance_4` — provide an explicit value; do **not** leave braces.
+  - `realtime_performance_strategy_1` — provide an explicit value; do **not** leave braces.
+  - `realtime_performance_strategy_2` — provide an explicit value; do **not** leave braces.
+  - `realtime_performance_strategy_3` — provide an explicit value; do **not** leave braces.
+  - `realtime_performance_strategy_4` — provide an explicit value; do **not** leave braces.
+  - `recent_activity` — provide an explicit value; do **not** leave braces.
+  - `refresh_button` — provide an explicit value; do **not** leave braces.
+  - `rule_actions` — provide an explicit value; do **not** leave braces.
+  - `rule_count` — provide an explicit value; do **not** leave braces.
+  - `rule_items` — provide an explicit value; do **not** leave braces.
+  - `rule_name` — provide an explicit value; do **not** leave braces.
+  - `rule_status` — provide an explicit value; do **not** leave braces.
+  - `running_color` — provide an explicit value; do **not** leave braces.
+  - `s1` — provide an explicit value; do **not** leave braces.
+  - `s2` — provide an explicit value; do **not** leave braces.
+  - `s3` — provide an explicit value; do **not** leave braces.
+  - `s4` — provide an explicit value; do **not** leave braces.
+  - `s5` — provide an explicit value; do **not** leave braces.
+  - `s6` — provide an explicit value; do **not** leave braces.
+  - `screen_reader_behavior_1` — provide an explicit value; do **not** leave braces.
+  - `screen_reader_behavior_2` — provide an explicit value; do **not** leave braces.
+  - `screen_reader_behavior_3` — provide an explicit value; do **not** leave braces.
+  - `screen_reader_behavior_4` — provide an explicit value; do **not** leave braces.
+  - `screen_reader_feature_1` — provide an explicit value; do **not** leave braces.
+  - `screen_reader_feature_2` — provide an explicit value; do **not** leave braces.
+  - `screen_reader_feature_3` — provide an explicit value; do **not** leave braces.
+  - `screen_reader_feature_4` — provide an explicit value; do **not** leave braces.
+  - `screen_title` — provide an explicit value; do **not** leave braces.
+  - `scroll` — provide an explicit value; do **not** leave braces.
+  - `search_box` — provide an explicit value; do **not** leave braces.
+  - `secondary_button` — provide an explicit value; do **not** leave braces.
+  - `secondary_flow_1_description` — provide an explicit value; do **not** leave braces.
+  - `secondary_flow_1_name` — provide an explicit value; do **not** leave braces.
+  - `secondary_flow_2_description` — provide an explicit value; do **not** leave braces.
+  - `secondary_flow_2_name` — provide an explicit value; do **not** leave braces.
+  - `secondary_flow_3_description` — provide an explicit value; do **not** leave braces.
+  - `secondary_flow_3_name` — provide an explicit value; do **not** leave braces.
+  - `secondary_flow_4_description` — provide an explicit value; do **not** leave braces.
+  - `secondary_flow_4_name` — provide an explicit value; do **not** leave braces.
+  - `secondary_label` — provide an explicit value; do **not** leave braces.
+  - `secondary_label_2` — provide an explicit value; do **not** leave braces.
+  - `secondary_label_3` — provide an explicit value; do **not** leave braces.
+  - `secondary_style` — provide an explicit value; do **not** leave braces.
+  - `settings` — provide an explicit value; do **not** leave braces.
+  - `setup_subtitle` — provide an explicit value; do **not** leave braces.
+  - `setup_welcome_title` — provide an explicit value; do **not** leave braces.
+  - `severity_indicator` — provide an explicit value; do **not** leave braces.
+  - `share_controls` — provide an explicit value; do **not** leave braces.
+  - `skip_link` — provide an explicit value; do **not** leave braces.
+  - `state` — provide an explicit value; do **not** leave braces.
+  - `status` — provide an explicit value; do **not** leave braces.
+  - `status_1` — provide an explicit value; do **not** leave braces.
+  - `status_2` — provide an explicit value; do **not** leave braces.
+  - `status_3` — provide an explicit value; do **not** leave braces.
+  - `status_4` — provide an explicit value; do **not** leave braces.
+  - `status_5` — provide an explicit value; do **not** leave braces.
+  - `status_6` — provide an explicit value; do **not** leave braces.
+  - `status_change_type_1` — provide an explicit value; do **not** leave braces.
+  - `status_change_type_2` — provide an explicit value; do **not** leave braces.
+  - `status_error` — provide an explicit value; do **not** leave braces.
+  - `status_loading` — provide an explicit value; do **not** leave braces.
+  - `status_notification_1` — provide an explicit value; do **not** leave braces.
+  - `status_notification_2` — provide an explicit value; do **not** leave braces.
+  - `status_running` — provide an explicit value; do **not** leave braces.
+  - `status_stopped` — provide an explicit value; do **not** leave braces.
+  - `status_summary_area` — provide an explicit value; do **not** leave braces.
+  - `status_trigger_1` — provide an explicit value; do **not** leave braces.
+  - `status_trigger_2` — provide an explicit value; do **not** leave braces.
+  - `status_visual_1` — provide an explicit value; do **not** leave braces.
+  - `status_visual_2` — provide an explicit value; do **not** leave braces.
+  - `status_warning` — provide an explicit value; do **not** leave braces.
+  - `step_description` — provide an explicit value; do **not** leave braces.
+  - `step_indicator` — provide an explicit value; do **not** leave braces.
+  - `stopped_color` — provide an explicit value; do **not** leave braces.
+  - `streaming_indicator` — provide an explicit value; do **not** leave braces.
+  - `tablet_adaptation_1` — provide an explicit value; do **not** leave braces.
+  - `tablet_adaptation_2` — provide an explicit value; do **not** leave braces.
+  - `tablet_adaptation_3` — provide an explicit value; do **not** leave braces.
+  - `tablet_adaptation_4` — provide an explicit value; do **not** leave braces.
+  - `tablet_behavior_1` — provide an explicit value; do **not** leave braces.
+  - `tablet_behavior_2` — provide an explicit value; do **not** leave braces.
+  - `tablet_behavior_3` — provide an explicit value; do **not** leave braces.
+  - `tablet_behavior_4` — provide an explicit value; do **not** leave braces.
+  - `tablet_range` — provide an explicit value; do **not** leave braces.
+  - `theme_options` — provide an explicit value; do **not** leave braces.
+  - `total_steps` — provide an explicit value; do **not** leave braces.
+  - `touch_behavior_1` — provide an explicit value; do **not** leave braces.
+  - `touch_behavior_2` — provide an explicit value; do **not** leave braces.
+  - `touch_behavior_3` — provide an explicit value; do **not** leave braces.
+  - `touch_behavior_4` — provide an explicit value; do **not** leave braces.
+  - `touch_interaction_1` — provide an explicit value; do **not** leave braces.
+  - `touch_interaction_2` — provide an explicit value; do **not** leave braces.
+  - `touch_interaction_3` — provide an explicit value; do **not** leave braces.
+  - `touch_interaction_4` — provide an explicit value; do **not** leave braces.
+  - `ui_mapping_1` — provide an explicit value; do **not** leave braces.
+  - `ui_mapping_2` — provide an explicit value; do **not** leave braces.
+  - `ui_mapping_3` — provide an explicit value; do **not** leave braces.
+  - `update_frequency_1` — provide an explicit value; do **not** leave braces.
+  - `update_frequency_2` — provide an explicit value; do **not** leave braces.
+  - `update_handling_1` — provide an explicit value; do **not** leave braces.
+  - `update_handling_2` — provide an explicit value; do **not** leave braces.
+  - `uptime` — provide an explicit value; do **not** leave braces.
+  - `user_actions` — provide an explicit value; do **not** leave braces.
+  - `user_auth_state` — provide an explicit value; do **not** leave braces.
+  - `user_entry_point` — provide an explicit value; do **not** leave braces.
+  - `user_profile_structure` — provide an explicit value; do **not** leave braces.
+  - `value_a` — provide an explicit value; do **not** leave braces.
+  - `value_b` — provide an explicit value; do **not** leave braces.
+  - `value_c` — provide an explicit value; do **not** leave braces.
+  - `value_d` — provide an explicit value; do **not** leave braces.
+  - `view_controls` — provide an explicit value; do **not** leave braces.
+  - `view_more_link` — provide an explicit value; do **not** leave braces.
+  - `visual_accessibility_1` — provide an explicit value; do **not** leave braces.
+  - `visual_accessibility_2` — provide an explicit value; do **not** leave braces.
+  - `visual_accessibility_3` — provide an explicit value; do **not** leave braces.
+  - `visual_accessibility_4` — provide an explicit value; do **not** leave braces.
+  - `visual_accessibility_behavior_1` — provide an explicit value; do **not** leave braces.
+  - `visual_accessibility_behavior_2` — provide an explicit value; do **not** leave braces.
+  - `visual_accessibility_behavior_3` — provide an explicit value; do **not** leave braces.
+  - `visual_accessibility_behavior_4` — provide an explicit value; do **not** leave braces.
+  - `warning_color` — provide an explicit value; do **not** leave braces.
+
+## Section‑by‑section guidance
+- **0) System Architecture Overview** — Provide high-level system context using ASCII art diagrams and feature mapping.
+- **1) User Flow Diagrams** — Create comprehensive flow diagrams using Mermaid format for primary and secondary user journeys.
+- **2) Screen Prototypes** — Define detailed ASCII art layouts for all major screens with specific interactive elements.
+- **3) Component Library** — Specify reusable UI components with consistent visual representations.
+- **4) Navigation Patterns** — Define navigation behavior across desktop, mobile, and context-specific scenarios.
+- **5) State Management** — Specify global and local state structure using YAML format.
+- **6) Interaction Patterns** — Define real-time updates, loading states, error handling, and user feedback mechanisms.
+- **7) Real-time Updates** — Specify data update patterns, status changes, and notification systems using YAML.
+- **8) Responsive Design** — Define breakpoints and layout adaptations for different screen sizes.
+- **9) Accessibility Features** — Specify keyboard navigation, screen reader support, and visual accessibility requirements.
+- **10) Performance Considerations** — Define data loading, real-time performance, and network optimization strategies.
+- **11) Prototype Specifications** — Define deliverables, features, and limitations of the interactive prototype.
+- **12) Assumptions & Open Questions** — Document assumptions and unresolved questions about prototype design.
+
+## ASCII Art Guidelines
+When creating screen layouts:
+- Use consistent border characters: ┌─┐ │ └─┘ for containers
+- Use [Button] notation for interactive elements
+- Use {{placeholder}} notation for dynamic content
+- Maintain proper spacing and alignment
+- Include visual hierarchy through layout structure
+- Show state indicators using symbols: ● ⚠ ✗ ⏸ ◐
+
+## Quality checklist
+- [ ] All `{{…}}` placeholders resolved.
+- [ ] ASCII art layouts are clear and properly formatted.
+- [ ] Mermaid diagrams follow proper syntax and show complete flows.
+- [ ] Component library is comprehensive and reusable.
+- [ ] Navigation patterns address all user scenarios.
+- [ ] State management structure is clearly defined.
+- [ ] Real-time update specifications are complete.
+- [ ] Responsive design covers all target breakpoints.
+- [ ] Accessibility requirements are thoroughly addressed.
+- [ ] Performance considerations are realistic and achievable.
+- [ ] Prototype specifications clearly define scope and limitations.
+- [ ] Saved to the correct release folder.
